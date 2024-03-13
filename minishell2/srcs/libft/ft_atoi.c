@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mini_ev_init.c                                  :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 00:46:59 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/10 12:44:50 by janhan           ###   ########.fr       */
+/*   Created: 2023/10/05 17:48:21 by janhan            #+#    #+#             */
+/*   Updated: 2024/03/01 19:52:46 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/libft.h"
 
-void	ft_mini_ev_init(char **ev, t_info *info)
+int	ft_atoi(const char *str)
 {
 	size_t	i;
+	int		flag;
+	int		sign;
+	int		result;
 
 	i = 0;
-	info->mini_ev = ft_list_init();
-	while (ev[i])
-	{
-		ft_list_push_back(ft_strdup(ev[i]), &(info->mini_ev));
+	flag = 0;
+	sign = 1;
+	result = 0;
+	while (str[i] == ' ' || (9 <= str[i] && str[i] <= 13))
 		i++;
+	while (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+		flag++;
 	}
+	while ('0' <= str[i] && str[i] <= '9')
+		result = (result * 10) + (str[i++] - '0');
+	if (flag > 1)
+		return (0);
+	return (result * sign);
 }

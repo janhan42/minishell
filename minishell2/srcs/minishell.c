@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mini_ev_init.c                                  :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 00:46:59 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/10 12:44:50 by janhan           ###   ########.fr       */
+/*   Created: 2024/03/13 10:44:53 by janhan            #+#    #+#             */
+/*   Updated: 2024/03/13 10:55:04 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <readline/history.h>
+#include <readline/readline.h>
 
-void	ft_mini_ev_init(char **ev, t_info *info)
+int	main(int argc, char **argv, char **enpv)
 {
-	size_t	i;
+	char *input;
 
-	i = 0;
-	info->mini_ev = ft_list_init();
-	while (ev[i])
+	while (TRUE)
 	{
-		ft_list_push_back(ft_strdup(ev[i]), &(info->mini_ev));
-		i++;
+		input = readline("명령어를 입력하세요: ");
+
+		if (input)
+		{
+			printf("입력된 명령어: %s\n", input);
+
+			add_history(input);
+			free(input);
+		}
 	}
+	return (0);
 }

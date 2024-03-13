@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mini_ev_init.c                                  :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 00:46:59 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/10 12:44:50 by janhan           ###   ########.fr       */
+/*   Created: 2023/10/08 08:31:31 by janhan            #+#    #+#             */
+/*   Updated: 2024/03/01 19:52:46 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/libft.h"
 
-void	ft_mini_ev_init(char **ev, t_info *info)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
+	char	*result;
+	size_t	str_len;
 	size_t	i;
 
+	if (!s || !f)
+		return (NULL);
 	i = 0;
-	info->mini_ev = ft_list_init();
-	while (ev[i])
+	str_len = ft_strlen(s);
+	result = (char *)malloc(sizeof(char) * str_len + 1);
+	if (!result)
+		return (NULL);
+	while (s[i])
 	{
-		ft_list_push_back(ft_strdup(ev[i]), &(info->mini_ev));
+		result[i] = f(i, s[i]);
 		i++;
 	}
+	result[i] = 0;
+	return (result);
 }

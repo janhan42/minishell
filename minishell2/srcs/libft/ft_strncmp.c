@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mini_ev_init.c                                  :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 00:46:59 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/10 12:44:50 by janhan           ###   ########.fr       */
+/*   Created: 2023/10/05 09:42:08 by janhan            #+#    #+#             */
+/*   Updated: 2024/03/01 19:52:47 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/libft.h"
 
-void	ft_mini_ev_init(char **ev, t_info *info)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
 	i = 0;
-	info->mini_ev = ft_list_init();
-	while (ev[i])
+	if (n == 0)
+		return (0);
+	while (i < n)
 	{
-		ft_list_push_back(ft_strdup(ev[i]), &(info->mini_ev));
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		else if (s1[i] == '\0')
+			return (0);
 		i++;
 	}
+	return (0);
 }

@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mini_ev_init.c                                  :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 00:46:59 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/10 12:44:50 by janhan           ###   ########.fr       */
+/*   Created: 2023/10/05 09:49:42 by janhan            #+#    #+#             */
+/*   Updated: 2024/03/01 19:52:47 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/libft.h"
 
-void	ft_mini_ev_init(char **ev, t_info *info)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	i;
+	const unsigned char	*temp_s1;
+	const unsigned char	*temp_s2;
 
-	i = 0;
-	info->mini_ev = ft_list_init();
-	while (ev[i])
+	temp_s1 = (const unsigned char *)s1;
+	temp_s2 = (const unsigned char *)s2;
+	while (n--)
 	{
-		ft_list_push_back(ft_strdup(ev[i]), &(info->mini_ev));
-		i++;
+		if (*temp_s1 != *temp_s2)
+			return (*temp_s1 - *temp_s2);
+		temp_s1++;
+		temp_s2++;
 	}
+	return (0);
 }

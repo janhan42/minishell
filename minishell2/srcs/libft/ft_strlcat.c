@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mini_ev_init.c                                  :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 00:46:59 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/10 12:44:50 by janhan           ###   ########.fr       */
+/*   Created: 2023/10/05 01:27:49 by janhan            #+#    #+#             */
+/*   Updated: 2024/03/01 19:52:46 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/libft.h"
 
-void	ft_mini_ev_init(char **ev, t_info *info)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
+	size_t	dest_len;
+	size_t	src_len;
 	size_t	i;
 
+	dest_len = ft_strlen(dest);
+	src_len = ft_strlen((char *)src);
 	i = 0;
-	info->mini_ev = ft_list_init();
-	while (ev[i])
+	if (size < dest_len + 1)
+		return (size + src_len);
+	if (size > dest_len + 1)
 	{
-		ft_list_push_back(ft_strdup(ev[i]), &(info->mini_ev));
-		i++;
+		while (src[i] != '\0' && dest_len + 1 + i < size)
+		{
+			dest[dest_len + i] = src[i];
+			i++;
+		}
 	}
+	dest[dest_len + i] = '\0';
+	return (dest_len + src_len);
 }

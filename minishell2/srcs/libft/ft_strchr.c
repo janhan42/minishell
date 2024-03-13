@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mini_ev_init.c                                  :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 00:46:59 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/10 12:44:50 by janhan           ###   ########.fr       */
+/*   Created: 2023/10/05 09:36:40 by janhan            #+#    #+#             */
+/*   Updated: 2024/03/01 19:52:47 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/libft.h"
 
-void	ft_mini_ev_init(char **ev, t_info *info)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
+	char	temp_c;
 
-	i = 0;
-	info->mini_ev = ft_list_init();
-	while (ev[i])
+	temp_c = (char)c;
+	while (*s != temp_c)
 	{
-		ft_list_push_back(ft_strdup(ev[i]), &(info->mini_ev));
-		i++;
+		if (*s == '\0')
+			return (0);
+		s++;
 	}
+	return ((char *)s);
 }

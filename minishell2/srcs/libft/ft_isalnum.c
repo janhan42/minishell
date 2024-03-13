@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mini_ev_init.c                                  :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 00:46:59 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/10 12:44:50 by janhan           ###   ########.fr       */
+/*   Created: 2023/10/04 23:34:15 by janhan            #+#    #+#             */
+/*   Updated: 2024/03/01 19:52:46 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/libft.h"
 
-void	ft_mini_ev_init(char **ev, t_info *info)
+int	ft_isalnum(int c)
 {
-	size_t	i;
-
-	i = 0;
-	info->mini_ev = ft_list_init();
-	while (ev[i])
-	{
-		ft_list_push_back(ft_strdup(ev[i]), &(info->mini_ev));
-		i++;
-	}
+	return (ft_isalpha(c) || ft_isdigit(c));
 }
