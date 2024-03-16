@@ -6,29 +6,26 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:44:53 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/13 10:55:04 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/15 11:07:04 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
-#include <readline/history.h>
-#include <readline/readline.h>
+#include <signal.h>
+#include <stdio.h>
+#include <unistd.h>
 
-int	main(int argc, char **argv, char **enpv)
+void signal_handler(int signal)
 {
-	char *input;
+	printf("Recived signal %d\n", signal);
+	// 필요 처리 구현
+	return ;
+}
 
-	while (TRUE)
-	{
-		input = readline("명령어를 입력하세요: ");
+int main(void)
+{
+	signal(SIGINT, signal_handler);
 
-		if (input)
-		{
-			printf("입력된 명령어: %s\n", input);
-
-			add_history(input);
-			free(input);
-		}
-	}
+	while (1)
+		sleep(1);
 	return (0);
 }
