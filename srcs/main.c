@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/16 16:54:33 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/16 18:11:13 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,13 @@ static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 		return ;
 	for (size_t i = 0; i < parse->token_count; i++)
 	{
-		printf("%d -> %s\n", parse->tokens[i].type, parse->tokens[i].str);
+		printf("tokens %d -> %s\n", parse->tokens[i].type, parse->tokens[i].str);
 	}
+	for (size_t i = 0; i < parse->token_count; i++)
+	{
+		printf("token %d -> %s\n", parse->token[i].type, parse->token[i].str);
+	}
+
 	// if (ft_exec(info, parse, exec) == FAILURE)
 	// 	return ;
 	// ft_free_all(parse, exec);

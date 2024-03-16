@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/16 16:35:56 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/16 17:58:24 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_parse
 	char			*line; // 전체 명령어 line
 	size_t			line_index; // 명령어 인덱스
 	size_t			token_count; // 토큰으로 짤랐을때 갯수
-	t_token			*tokens; // 토큰들
+	t_token			*tokens; // 토큰들 -> 다짜름
 	size_t			token_index; // 토큰의 인덱스
 	t_token			*token; // 토큰 하나
 	char			*temp_str; // 이거는 파서용 temp 용
@@ -100,11 +100,11 @@ typedef struct s_parse
 	int				squote_flag; // ' 플래그
 	int				dquote_flag; // " 플래그
 	char			*target_ev; // 명령어 실행 ev
-	char			*ev_val; // ev 변수값
+	char			*ev_val; // $환경변수의 배열.
 	size_t			ev_val_len; // ev 길이
 	char			*old_str; // 파서용 저장용
 	char			*new_str; // 파서용 실행용
-	char			*exit_code; // 토큰 실행후 exit 값
+	char			*exit_code; // 토큰 실행후 exit 값 $? 을때 저장
 }	t_parse;
 
 typedef enum s_redirect_type // 리다이렉션 타입값
