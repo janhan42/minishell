@@ -6,9 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:17:46 by janhan            #+#    #+#             */
-/*   Updated: 2024/02/27 23:18:04 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/16 16:37:42 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../includes/minishell.h"
 
 int	ft_is_redirect(char c)
 {

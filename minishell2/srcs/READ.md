@@ -431,3 +431,115 @@ kill
 	실패시 -1을 반환후, errno를 설정
 - pid : 시그널을 받을 프로세스의 포르세스 ID 'pid'깂이 음수일 경우, 시그널은 프로세스 그룹에 전송될 수 있습니다,
 - sig : 전송할 시그널의 번호입니다, '0'을 지정하면 실제로 시그널을 전송하지 않고 프로세스의 존재만을 확인할 수 있다,
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <unistd.h>
+
+int main()
+{
+	pid_t pid = /* 대상 프로세스의 PID */
+
+	// SIGINT 시그널을 프로세스에 보내기
+	if (kill(pid, SIGINT) == -1)
+	{
+		perror("kill failed");
+		exit(EXIT_FAILURE);
+	}
+	return (0);
+}
+```
+이 예제에서 'kill' 함수는 특정 프로세스에 'SIGINT' 시그널을 보내어, 일반적으로 프로세스를 종료하도록 요청합니다, 'SIGINT'는 키보드로부터 인터럽트가 발생했을 때 생성되는 시그널과 동일합니다.
+
+Caption
+
+- 'kill' 함수를 사용하여 시그널을 전송할 때, 보내는 프로세스는 받는 프로세스에 대한 적절한 권한(보통은 같은 사용자 또는 루트 권한)을 가져야 합니다.
+- 특정 시그널들은 프로세스가 이를 잡아내거나 무시할 수 없게 설계되어 있습니다.(예: 'SIGKILL', 'SIGSTOP',).
+- 프로세스 그룹에 시그널을 보낼 때는 'pid' 매개변수에 그룹 ID의 음수 값을 사용합니다.
+___
+getcwd
+
+	#include <unistd.h>
+	char *getcwd(char *buf, size_t size);
+
+	return value
+	성공 시: 현재 작업 디렉토리의 절대 경로를 담고 있는 'buf'의 주소를 반환.
+	실패시 : 'NULL'을 반환하고, 'errno'를 설정
+- buf : 현재 작업 디렉토리의 경로를 저장할 버퍼의 주소, 이 버퍼는 사용자가 제공해야 하며, 충분한 크기를 가지고 있어야 합니다.
+- size : 'buf'의 크기입니다. 경로가 이 크기를 초과할 경우, 'NULL'이 반환되고 'errno'는 'ERANGE'로 설정됩니다.
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+int main()
+{
+	char cwd[1024];
+	if (getcwd(cwd, sizeof(cwd)) != NULL)
+		printf("Current working directory: %s\n", cwd);
+	else
+	{
+		perror("getcwd() error");
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+```
+Caption
+
+- buf 에 제공되는 메모리 공간이 충분히 큰지 확인해야한다, POSIX표준은 최소 256바이트의 크기를 권장 하지만, 보다 안전하게 처리하기 위해 'PATH_MAX'상수를 사용하는 것이 좋다, PATH_MAX는 해당 시스템에서 가능한 최대 경로 길이를 정의.
+- 동적 메모리 할당을 사용하여 'getcwd'를 호출할 수도 있다, 이 경우 함수가 실패 할 때 할당된 메모리를 적절히 해제해야하는 책임이 있다.
+___
+chdir
+
+	#include <unistd.h>
+	int chdir(const char *path);
+
+	return value
+	성공 시 : 0을 반환.
+	실패 시 : -1을 반환하고, 'errno' 변수를 설정, 실패의 원인으로는 'path'가 존재하지 않거나, 접근 권한이 없는 경우 등이 있을 수 있다.
+- path : 현재 작업 디렉토리로 변경하고자 하는 디렉토리 경로를 가르키는 문자열.
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+int main()
+{
+	const char *newDir = "/path/to/new/directory";
+
+	if (chdir(newDir) == 0)
+		printf("Changed the current working directory to %s\n", newDir);
+	else
+	{
+		perror("chdir failed");
+		return (errno);
+	}
+	return (EXIT_SUCCESS);
+}
+```
+Caption
+
+- chdir 함수는 프그램의 전역 상태를 변경합니다. 따라서, 멀시스레드 환경에스는 현자 작업 디렉토리를 변경하면 모든 스레드에 영향을 준다.
+- 보안상의 이유로, 프로그램이 민감한 작업을 수행하기 전에는 항상 현재 디렉토리의 변경이 성공했는지 확인해야한다. 이는 디렉토리 변경 실패가 보안 취약점으로 이어질 수 있기 때문이다.
+- chdir를 사용한 후에는 getcwd 함수 등을 사용하여 현재 디렉토리가 예상한 대로 변경되었는지 확인 하는것이 좋다.
+___
+stat
+
+	#include <sys/types.h>
+	#include <sys/stat.h>
+	#include <unistd.h>
+	int stat(const char *path, struct stat *buf);
+
+stat 함수는 지정된 경로의 파일에 대한 상태 정보를 얻는다, 심볼릭 링크의 경우, 링링크크가  가리키는 실제 파일의 상태 정보를 반환한다.
+- path : 상태 정보를 얻고자 하는 파일의 경로.
+- buf : 파일의 상태 정보를 저장할 'struct stat' 구조체의 주소.
+---
+lstat
+
+	#include <sys/type.h>
+	#include <sys/stat.h>
+	#include <unistd.h>
+	int lstat(const char *path, strcut stat *buf);

@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:39:11 by janhan            #+#    #+#             */
-/*   Updated: 2024/02/24 00:46:52 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/16 14:53:53 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	ft_init(int ac, char **av, char **ev, t_info *info)
 	info->ac = ac;
 	info->av = av;
 	info->ev = ev;
-	tcgetattr(STDIN_FILENO, &info->termios_backup);
+	tcgetattr(STDIN_FILENO, &info->termios_backup); // 현재 터미널 설정값을 받아옴
 	ft_mini_ev_init(ev, info);
 }

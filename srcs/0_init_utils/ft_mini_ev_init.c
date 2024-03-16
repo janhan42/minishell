@@ -6,12 +6,18 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:46:59 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/10 12:44:50 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/16 14:55:07 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+/**
+ * @brief
+ * 환경변수 전체를 긇어서 리스트화 하는 함수.
+ * @param ev 환경변수
+ * @param info ft_init 에서 초기화한 info구조체
+ */
 void	ft_mini_ev_init(char **ev, t_info *info)
 {
 	size_t	i;

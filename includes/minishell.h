@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/02 15:16:20 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/16 16:35:56 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 extern int	g_child_exit_code;
 
 /* LIST STRUCT */
+// 리스트 노드 구조체
 typedef struct s_node
 {
 	void			*content;
@@ -51,6 +52,7 @@ typedef struct s_node
 	struct s_node	*prev_node;
 }	t_node;
 
+// 리스트 구조체
 typedef struct s_list
 {
 	t_node			*front_node;
@@ -61,15 +63,15 @@ typedef struct s_list
 /* TOKEN STRUCT */
 typedef enum e_token_type
 {
-	WORD,
-	PIPE,
-	REDIRECT,
+	WORD, // 명령어
+	PIPE, // 파이프
+	REDIRECT, // 리다이렉션
 }	t_token_type;
 
 typedef struct s_token
 {
-	t_token_type	type;
-	char			*str;
+	t_token_type	type; // 토큰짜른거 타입
+	char			*str; // 짜른 토큰
 }	t_token;
 
 /* MAIN */
@@ -78,34 +80,34 @@ typedef struct s_info
 	int				ac;
 	char			**av;
 	char			**ev;
-	t_list			mini_ev;
-	struct termios	termios_backup;
-	struct termios	termios;
+	t_list			mini_ev; // ev전체 짜른거
+	struct termios	termios_backup; // 터미널 설정 백업
+	struct termios	termios; // 현재 터미널 설정
 }	t_info;
 
 typedef struct s_parse
 {
-	char			*line;
-	size_t			line_index;
-	size_t			token_count;
-	t_token			*tokens;
-	size_t			token_index;
-	t_token			*token;
-	char			*temp_str;
-	size_t			temp_str_len;
-	size_t			start_index;
-	size_t			str_index;
-	int				squote_flag;
-	int				dquote_flag;
-	char			*target_ev;
-	char			*ev_val;
-	size_t			ev_val_len;
-	char			*old_str;
-	char			*new_str;
-	char			*exit_code;
+	char			*line; // 전체 명령어 line
+	size_t			line_index; // 명령어 인덱스
+	size_t			token_count; // 토큰으로 짤랐을때 갯수
+	t_token			*tokens; // 토큰들
+	size_t			token_index; // 토큰의 인덱스
+	t_token			*token; // 토큰 하나
+	char			*temp_str; // 이거는 파서용 temp 용
+	size_t			temp_str_len; // 파서용 temp 길이
+	size_t			start_index; // temp의 인덱스
+	size_t			str_index; // 얘도 인덱스
+	int				squote_flag; // ' 플래그
+	int				dquote_flag; // " 플래그
+	char			*target_ev; // 명령어 실행 ev
+	char			*ev_val; // ev 변수값
+	size_t			ev_val_len; // ev 길이
+	char			*old_str; // 파서용 저장용
+	char			*new_str; // 파서용 실행용
+	char			*exit_code; // 토큰 실행후 exit 값
 }	t_parse;
 
-typedef enum s_redirect_type
+typedef enum s_redirect_type // 리다이렉션 타입값
 {
 	OUT1,
 	OUT2,
@@ -115,33 +117,33 @@ typedef enum s_redirect_type
 
 typedef struct s_redirect
 {
-	t_redirect_type		type;
-	char				*value;
+	t_redirect_type		type; // 타입
+	char				*value; // << < > >>
 }	t_redirect;
 
 typedef struct s_exec_info
 {
-	char			*cmd_path;
-	char			**cmd;
-	size_t			cmd_index;
-	t_redirect		*redirect;
-	size_t			redirect_index;
-	pid_t			pid;
-	int				use_pipe;
-	int				pipe_fd[2];
-	int				infile_fd;
-	int				outfile_fd;
-	int				builtin_parent;
+	char			*cmd_path; // 실행부 명령어 경로
+	char			**cmd; // 명령어
+	size_t			cmd_index; // 명령어 인덱스
+	t_redirect		*redirect; // 리다이렉션 정보
+	size_t			redirect_index; // 리다이렉션 인덱스
+	pid_t			pid; // pipe pid 값
+	int				use_pipe; // 사용 여부
+	int				pipe_fd[2]; // 파이프
+	int				infile_fd; // fd
+	int				outfile_fd; // fd
+	int				builtin_parent; // 빌트인 부모 프로세스
 }	t_exec_info;
 
 typedef struct s_exec
 {
-	t_exec_info	*exec_arr;
-	size_t		exec_arr_size;
-	size_t		exec_arr_index;
-	int			prev_pipe_fd;
-	char		**path_ev;
-	pid_t		current_child_pid;
+	t_exec_info	*exec_arr; // 전체 명령어 실행부 리스트
+	size_t		exec_arr_size; // 사이즈
+	size_t		exec_arr_index; // 인덱스
+	int			prev_pipe_fd; // 이전 실행부분 fd
+	char		**path_ev; // ev 명령어 경로
+	pid_t		current_child_pid; // 현재 실행중인 자식프로세스 pid값
 }	t_exec;
 
 /* 0_INIT UTILS */
