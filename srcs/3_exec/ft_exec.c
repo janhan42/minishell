@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:25:46 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/16 15:01:32 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/17 09:33:36 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_exec(t_info *info, t_parse *parse, t_exec *exec)
 	while (exec->exec_arr_index < exec->exec_arr_size)
 	{
 		exec_info = &exec->exec_arr[exec->exec_arr_index];
-		if (ft_is_builtin_parent(exec, exec_info) == TRUE)
+		if (ft_exec_builtin_parent(exec, exec_info) == TRUE)
 			return (ft_exec_builtin_parent(info, parse, exec, exec_info));
 		if (exec_info->use_pipe == TRUE)
 		{
