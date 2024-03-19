@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/16 17:58:24 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/19 11:17:17 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/_types/_pid_t.h>
 # include <sys/_types/_size_t.h>
 # include <sys/termios.h>
+# include <sys/syslimits.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <readline/readline.h>
@@ -171,13 +172,23 @@ int	ft_set_exec_info(t_parse *parse, t_exec_info *exec_info);
 int	ft_make_exec_info(t_info *info, t_parse *parse, t_exec *exec);
 
 /* 3_exec */
-int	ft_check_here_doc(t_exec *exec);
+int		ft_check_here_doc(t_exec *exec);
+int		ft_exec_builtin_parent(t_info *info, t_parse *parse, t_exec *exec, t_exec_info *exec_info);
+
+/* 4_builtin */
+int ft_cd_builtin(t_exec_info *exec_info);
+int ft_echo_builtin(t_exec_info *exec_info);
+int	ft_env_builtin(t_info *info);
 
 /* 5_LIST UTILS */
 t_list	ft_list_init(void);
 int		ft_list_push_back(void	*content, t_list *list);
 int		ft_list_del_node(t_list *list, t_node *node);
 void	ft_list_clear(t_list *list);
+int		ft_exit_builtin(t_list *mini_ev, t_parse *parse, t_exec *exec, t_exec_info *exec_info);
+int		ft_export_builtin(t_info *info, t_exec_info *exec_info);
+int		ft_pwd_builtin(void);
+int		ft_unset_builtin(t_info *info, t_exec_info *exec_info);
 
 /* 6_UTILS */
 int		ft_error(char *msg, int error_code);
@@ -189,6 +200,8 @@ int		ft_is_redirect(char c);
 int		ft_is_space(char c);
 int		ft_is_heredoc(char c1, char c2);
 int		ft_is_env(t_info *info, t_parse *parse);
+int		ft_is_builtin_parent(t_exec *exec, t_exec_info *exec_info);
+int		ft_is_builtin(t_exec_info *exec_info);
 int		ft_perror(int error_code);
 void	ft_free_exec(t_exec *exec, size_t exec_arr_i);
 void	ft_free_all(t_parse *parse, t_exec *exec);
