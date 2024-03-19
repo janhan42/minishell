@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:25:46 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 13:00:57 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/19 16:57:37 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,11 @@ int	ft_exec(t_info *info, t_parse *parse, t_exec *exec)
 				ft_free_all(parse, exec);
 				return (ft_perror(FAILURE));
 			}
-			if (ft_make_child(info, parse, exec, exec_info) == FAILURE)
-				return (FAILURE);
-			exec->exec_arr_index++;
 		}
-		ft_wait_child(exec);
-		return (SUCCESS);
+		if (ft_make_child(info, parse, exec, exec_info) == FAILURE)
+			return (FAILURE);
+		exec->exec_arr_index++;
 	}
+	ft_wait_child(exec);
+	return (SUCCESS);
 }

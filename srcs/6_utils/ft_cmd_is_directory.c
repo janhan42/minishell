@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   ft_cmd_is_directory.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 00:39:11 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 14:46:50 by janhan           ###   ########.fr       */
+/*   Created: 2024/03/19 14:37:19 by janhan            #+#    #+#             */
+/*   Updated: 2024/03/19 14:38:27 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	g_child_exit_code;
-
-void	ft_init(int ac, char **av, char **ev, t_info *info)
+void	ft_cmd_is_directory(char *cmd_path)
 {
-	g_child_exit_code = 0;
-	info->ac = ac;
-	info->av = av;
-	info->ev = ev;
-	tcgetattr(STDIN_FILENO, &info->termios_backup);
-	ft_mini_ev_init(ev, info);
+	DIR *dir;
+
+	dir = opendir(cmd_path);
+	if (dir != NULL)
+	{
+		// ft_printf_err("%s: is directory\n", cmd_path);
+		printf("%s: is directory\n", cmd_path);
+		exit(126);
+	}
 }

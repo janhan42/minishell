@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_str.c                                     :+:      :+:    :+:   */
+/*   ft_print_p_err.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 16:36:49 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/01 19:52:46 by janhan           ###   ########.fr       */
+/*   Created: 2024/03/19 16:12:19 by janhan            #+#    #+#             */
+/*   Updated: 2024/03/19 16:12:20 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-void	ft_print_str(va_list *out_ap, int *out_count, int *flag)
+static void	print_ibase_num(size_t nbr, char *base, int *res)
 {
-	char	*str;
-	size_t	len;
+	if (nbr == 0)
+		return ;
+	print_ibase_num(nbr / 16, base, res);
+	write(2, &base[nbr % 16], 1);
+	(*res)++;
+}
 
-	str = va_arg(*out_ap, char *);
-	if (str == NULL)
-		str = "(null)";
-	len = ft_strlen(str);
-	if (write(1, str, len) == -1)
-		*flag = ERROR;
-	else
-		*out_count += len;
+void	ft_print_p(void *addr, int *res)
+{
+	size_t	nbr;
+	char	*base;
+
+	base = "0123456789abcdef";
+	nbr = (size_t)addr;
+	write(2, "0x", 2);
+	(*res) = (*res) + 2;
+	if (nbr == 0)
+	{
+		write(2, &base[0], 1);
+		(*res)++;
+		return ;
+	}
+	print_ibase_num(nbr, base, res);
 }

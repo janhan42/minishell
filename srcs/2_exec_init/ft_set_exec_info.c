@@ -6,29 +6,28 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:10:50 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/01 19:21:51 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/19 16:06:18 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stddef.h>
 
 static int	ft_malloc_cmd(t_parse *parse, t_exec_info *exec_info)
 {
-	size_t	token_index;
+	size_t	tokens_index;
 	size_t	size;
 
-	token_index = parse->token_index;
+	tokens_index = parse->token_index;
 	size = 0;
-	while (token_index < parse->token_count)
+	while (tokens_index < parse->token_count)
 	{
-		if (parse->tokens[token_index].type == PIPE)
+		if (parse->tokens[tokens_index].type == PIPE)
 			break ;
-		if (parse->tokens[token_index].type == REDIRECT)
-			token_index++;
-		if (parse->tokens[token_index].type == WORD)
+		if (parse->tokens[tokens_index].type == REDIRECT)
+			tokens_index++;
+		if (parse->tokens[tokens_index].type == WORD)
 			size++;
-		token_index++;
+		tokens_index++;
 	}
 	exec_info->cmd = (char **)ft_calloc(size + 1, sizeof(char *));
 	if (exec_info->cmd == NULL)
@@ -71,10 +70,12 @@ static void	ft_add_redirect(t_parse *parse, t_exec_info *exec_info)
 		exec_info->redirect[exec_info->redirect_index].type = OUT1;
 	else if (ft_strncmp(parse->tokens[parse->token_index].str, ">>", 3) == 0)
 		exec_info->redirect[exec_info->redirect_index].type = OUT2;
+	else if (ft_strncmp(parse->tokens[parse->token_index].str, "<", 2) == 0)
+		exec_info->redirect[exec_info->redirect_index].type = IN1;
 	else if (ft_strncmp(parse->tokens[parse->token_index].str, "<<", 3) == 0)
 		exec_info->redirect[exec_info->redirect_index].type = HERE_DOC;
 	exec_info->redirect[exec_info->redirect_index].value
-		=	parse->tokens[parse->token_index + 1].str;
+		= parse->tokens[parse->token_index + 1].str;
 	exec_info->redirect_index++;
 }
 

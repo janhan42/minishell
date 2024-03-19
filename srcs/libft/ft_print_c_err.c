@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   ft_print_c_err.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 00:39:11 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 14:46:50 by janhan           ###   ########.fr       */
+/*   Created: 2024/03/19 16:12:07 by janhan            #+#    #+#             */
+/*   Updated: 2024/03/19 16:12:10 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/libft.h"
 
-int	g_child_exit_code;
-
-void	ft_init(int ac, char **av, char **ev, t_info *info)
+void	ft_print_c(int c, int *res)
 {
-	g_child_exit_code = 0;
-	info->ac = ac;
-	info->av = av;
-	info->ev = ev;
-	tcgetattr(STDIN_FILENO, &info->termios_backup);
-	ft_mini_ev_init(ev, info);
+	write(2, &c, 1);
+	(*res)++;
 }

@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:25:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/17 09:48:19 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/19 16:13:44 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,12 @@ void	ft_putnbr_fd(int n, int fd);
 
 /* ------ printf ------ */
 
-int		ft_printf(const char *format, ...);
-void	ft_print_char(va_list *out_ap, int *out_count, int *flag);
-void	ft_print_str(va_list *out_ap, int *out_count, int *flag);
-void	ft_print_di(va_list *out_ap, int *out_count, int *flag);
-void	ft_print_hex(va_list *out_ap, int *out_count,
-			const char type, int *flag);
-void	ft_print_address(va_list *out_ap, int *out_count, int *flag);
-void	ft_print_u(va_list *out_ap, int *out_count, int *flag);
-
+void	ft_print_c(int c, int *res);
+void	ft_print_di(int nb, int *res);
+void	ft_print_p(void *addr, int *res);
+void	ft_print_s(char *str, int *res);
+void	ft_print_u(unsigned int nb, int *res);
+void	ft_print_x(unsigned int nbr, char x, int *res);
+int	ft_printf_err(const char *format, ...);
 
 #endif

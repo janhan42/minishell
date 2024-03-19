@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:43:03 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/17 09:48:30 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/19 16:14:16 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_cd_builtin(t_exec_info *exec_info)
 		g_child_exit_code = 1;
 		if (exec_info->builtin_parent == TRUE)
 		{
-			ft_printf("cd: %s: ", path);
+			ft_printf_err("cd: %s: ", path);
 			return (ft_perror(SUCCESS));
 		}
 		else

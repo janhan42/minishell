@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:41:14 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/01 18:47:43 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/19 15:21:00 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	ft_check_pipe_syntax(t_parse *parse)
 	if (parse->token_index == 0 || parse->token_index == parse->token_count - 1)
 	{
 		g_child_exit_code = 258;
-		return (ft_error("Syntax Error: PIPE bacame first or last", FAILURE));
+		return (ft_error("Syntax Error: PIPE became first or last", FAILURE));
 	}
 	else
 	{

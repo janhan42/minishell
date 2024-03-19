@@ -6,7 +6,7 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 13:40:39 by janhan            #+#    #+#              #
-#    Updated: 2024/03/16 16:40:53 by janhan           ###   ########.fr        #
+#    Updated: 2024/03/19 16:15:03 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,13 +49,13 @@ SRCS =				ft_isprint.c			\
 					ft_putstr_fd.c			\
 					ft_putendl_fd.c			\
 					ft_putnbr_fd.c			\
-					ft_printf.c 			\
-					ft_print_char.c 		\
-					ft_print_str.c 			\
-					ft_print_di.c 			\
-					ft_print_hex.c 			\
-					ft_print_u.c 			\
-					ft_print_address.c
+					ft_print_c_err.c		\
+					ft_print_di_err.c		\
+					ft_print_p_err.c		\
+					ft_print_s_err.c		\
+					ft_print_u_err.c		\
+					ft_print_x_err.c		\
+					ft_printf_err.c
 
 OBJS = $(SRCS:.c=.o)
 

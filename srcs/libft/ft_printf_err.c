@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_error.c                                   :+:      :+:    :+:   */
+/*   ft_printf_err.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 01:00:25 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/01 19:52:47 by janhan           ###   ########.fr       */
+/*   Created: 2024/03/19 16:12:35 by janhan            #+#    #+#             */
+/*   Updated: 2024/03/19 16:12:37 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	ft_printf_int(int arg, char type, int *res)
 		ft_print_di(arg, res);
 }
 
-static int	ft_print(va_list va, const char *format, int res)
+static int	ft_print(va_list arg, const char *format, int res)
 {
 	int	i;
 
@@ -47,26 +47,29 @@ static int	ft_print(va_list va, const char *format, int res)
 		{
 			i++;
 			if (format[i] == 'c' || format[i] == 'd' || format[i] == 'i')
-				ft_print_int(va_arg(va, int), format[i], &res);
+				ft_printf_int(va_arg(arg, int), format[i], &res);
 			else if (format[i] == 'x' || format[i] == 'X' || format[i] == 'u')
-				ft_print_u(va_arg(va, unsigned), format[i], &res);
+				ft_printf_unsinged_int(va_arg(arg, unsigned), format[i], &res);
 			else if (format[i] == 's' || format[i] == 'p')
-				ft_print_pointer(va_arg(va, void *), format[i], &res);
+				ft_printf_pointer(va_arg(arg, void *), format[i], &res);
 			else if (format[i] == '%')
-				ft_print_char('%', &res);
+				ft_print_c('%', &res);
 			else
 				return (-1);
 		}
+		else
+			ft_print_c(format[i], &res);
 	}
+	return (res);
 }
 
 int	ft_printf_err(const char *format, ...)
 {
-	va_list	va;
+	va_list	arg;
 	int		res;
 
-	va_start(va, format);
-	res = ft_print(va, format, 0);
-	va_end(va);
+	va_start(arg, format);
+	res = ft_print(arg, format, 0);
+	va_end(arg);
 	return (res);
 }

@@ -6,7 +6,7 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/03/16 18:08:32 by janhan           ###   ########.fr        #
+#    Updated: 2024/03/19 14:45:46 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIBFT_A					=	$(LIBFT_DIR)/libft.a
 SRCS					=	srcs/main.c										\
 							srcs/0_init_utils/ft_init_exec.c				\
 							srcs/0_init_utils/ft_init.c						\
-							srcs/0_init_utils/ft_mini_ev_init.c			\
+							srcs/0_init_utils/ft_mini_ev_init.c				\
 							srcs/0_init_utils/ft_sig_init.c					\
 							srcs/1_parsing/ft_convert_child.c				\
 							srcs/1_parsing/ft_convert_env.c					\
@@ -38,14 +38,32 @@ SRCS					=	srcs/main.c										\
 							srcs/1_parsing/ft_tokenization.c				\
 							srcs/2_exec_init/ft_exec_init.c					\
 							srcs/2_exec_init/ft_set_exec_info.c				\
+							srcs/3_exec/ft_check_here_doc.c					\
+							srcs/3_exec/ft_exec_builtin_parent.c			\
+							srcs/3_exec/ft_exec_builtin.c					\
+							srcs/3_exec/ft_exec_cmd.c						\
+							srcs/3_exec/ft_exec.c							\
+							srcs/3_exec/ft_set_pipe_fd.c					\
+							srcs/3_exec/ft_set_redirect_fd.c				\
+							srcs/4_builtin/ft_cd_builtin.c					\
+							srcs/4_builtin/ft_echo_builtin.c				\
+							srcs/4_builtin/ft_env_builtin.c					\
+							srcs/4_builtin/ft_export_builtin.c				\
+							srcs/4_builtin/ft_exit_builtin.c				\
+							srcs/4_builtin/ft_export_builtin.c				\
+							srcs/4_builtin/ft_pwd_builtin.c					\
+							srcs/4_builtin/ft_unset_builtin.c				\
 							srcs/5_list_utils/ft_list_clear.c				\
 							srcs/5_list_utils/ft_list_del_node.c			\
 							srcs/5_list_utils/ft_list_init.c				\
 							srcs/5_list_utils/ft_list_push_back.c			\
+							srcs/6_utils/ft_cmd_is_directory.c				\
 							srcs/6_utils/ft_error.c							\
 							srcs/6_utils/ft_free_all.c						\
 							srcs/6_utils/ft_free_exec.c						\
 							srcs/6_utils/ft_free_tokens.c					\
+							srcs/6_utils/ft_is_builtin_parent.c				\
+							srcs/6_utils/ft_is_builtin.c					\
 							srcs/6_utils/ft_is_child_exit_code.c			\
 							srcs/6_utils/ft_is_env.c						\
 							srcs/6_utils/ft_is_heredoc.c					\

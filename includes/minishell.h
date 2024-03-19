@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 11:17:17 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/19 14:39:48 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,13 @@ int	ft_set_exec_info(t_parse *parse, t_exec_info *exec_info);
 int	ft_make_exec_info(t_info *info, t_parse *parse, t_exec *exec);
 
 /* 3_exec */
+int		ft_exec(t_info *info, t_parse *parse, t_exec *exec);
 int		ft_check_here_doc(t_exec *exec);
 int		ft_exec_builtin_parent(t_info *info, t_parse *parse, t_exec *exec, t_exec_info *exec_info);
+int		ft_exec_builtin(t_info *info, t_parse *parse, t_exec *exec, t_exec_info *exec_info);
+void	ft_exec_cmd(t_info *info, t_parse *parse, t_exec *exec, t_exec_info *exec_info);
+void	ft_set_pipe_fd(t_exec *exec, t_exec_info *exec_info);
+void	ft_set_redirect_fd(t_exec_info *exec_info);
 
 /* 4_builtin */
 int ft_cd_builtin(t_exec_info *exec_info);
@@ -191,6 +196,7 @@ int		ft_pwd_builtin(void);
 int		ft_unset_builtin(t_info *info, t_exec_info *exec_info);
 
 /* 6_UTILS */
+void	ft_cmd_is_directory(char *cmd_path);
 int		ft_error(char *msg, int error_code);
 void	ft_free_tokens(t_parse *parse, size_t token_size);
 int		ft_is_child_exit_code(t_parse *parse);
