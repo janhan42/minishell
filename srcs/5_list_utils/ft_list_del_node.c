@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 14:06:02 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/20 17:51:31 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:29:31 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,3 +78,20 @@ int	ft_list_del_node(t_list *list, t_node *node)
 	return (SUCCESS);
 }
 */
+
+int	ft_list_del_node(t_list *list, t_node *node)
+{
+	t_node	*finder;
+
+	finder = list->front_node;
+	if (list == NULL || node == NULL)
+		return (ft_error("argument has been worng", FAILURE));
+	while (finder != node && finder->next_node != node)
+		finder = finder->next_node;
+	finder->next_node = node->next_node;
+	free(node->content);
+	free(node);
+	// 첫 노드가 지워야 하는 거일 때 조건 추가
+
+
+}

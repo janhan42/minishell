@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/20 17:47:22 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:29:35 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ typedef struct s_node
 typedef struct s_list
 {
 	t_node			*front_node;
-	t_node			*back_node;
-	t_node			*current_node;
+	//t_node			*back_node;
+	//t_node			*current_node;
 }	t_list;
 
 /* TOKEN STRUCT */
@@ -188,8 +188,8 @@ int	ft_env_builtin(t_info *info);
 /* 5_LIST UTILS */
 t_list	ft_list_init(void);
 int		ft_list_push_back(void	*content, t_list *list);
-int		ft_list_del_node(t_list *list, t_node *node);
 void	ft_list_clear(t_list *list);
+int		ft_list_del_node(t_list *list, t_node *node);
 int		ft_exit_builtin(t_list *mini_ev, t_parse *parse, t_exec *exec, t_exec_info *exec_info);
 int		ft_export_builtin(t_info *info, t_exec_info *exec_info);
 int		ft_pwd_builtin(void);
