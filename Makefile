@@ -15,9 +15,13 @@ NAME					=	minishell
 CC						=	cc
 CFLAGS					=	-Wall -Wextra -Werror
 RM						=	rm -f
-READLINE_LINK			=	-l readline
+
+#READLINE_LINK			=	-l readline
+#	FOR M1 MAC
+READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
 
 INCLUDES				=	includes/
+
 
 LIBFT_DIR				=	srcs/libft
 LIBFT					=	libft.a
@@ -91,13 +95,13 @@ all : $(NAME)
 $(NAME) : $(OBJS_MAND)
 	@echo $(CURSIVE)$(YELLOW) "      - Making $(NAME) -" $(NONE)
 	@make -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) $(LIBFT_A) $(READLINE_LINK) $^ -o $@
+	@$(CC) $(CFLAGS) $(LIBFT_A)  $^ -o $@ $(READLINE_LINK)
 	@echo $(CURSIVE)$(YELLOW) "        - Compiling $(NAME) -" $(NONE)
 	@echo $(GREEN) "            - philo Complete -"$(NONE)
 
 %.o : %.c
 	@echo $(CURSIVE)$(YELLOW) "      - Making object files -" $(NONE)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I/opt/homebrew/opt/readline/include -c $< -o $@
 
 clean :
 	@rm -fr $(OBJS_MAND)

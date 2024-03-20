@@ -6,12 +6,13 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 14:06:02 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/16 16:59:13 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/20 17:51:31 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+/*
 static void	ft_del_node(t_node *node)
 {
 	t_node	*node1;
@@ -76,3 +77,4 @@ int	ft_list_del_node(t_list *list, t_node *node)
 		ft_del_node(node);
 	return (SUCCESS);
 }
+*/

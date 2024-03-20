@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 14:39:48 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/20 17:47:22 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_node
 {
 	void			*content;
 	struct s_node	*next_node;
-	struct s_node	*prev_node;
+	//struct s_node	*prev_node;
 }	t_node;
 
 // 리스트 구조체

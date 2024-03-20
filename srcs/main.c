@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 16:07:54 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/20 17:44:17 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	main(int ac, char **av, char **ev)
 	{
 		ft_sig_init(&info);
 		parse.line = readline("\033minishell : ");
-		if (parse.line == NULL)
+		if (parse.line == NULL) // 종료되어야 하는 부분
 		{
 			ft_list_clear(&info.mini_ev);
 			ft_putstr_fd("\x1b[1A\033[9Cexit\n", STDOUT_FILENO);
