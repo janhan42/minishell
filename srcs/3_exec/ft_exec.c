@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:25:46 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 16:23:24 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:57:24 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,16 @@ static int	ft_make_child(t_info *info, t_parse *parse,
 	t_exec *exec, t_exec_info *exec_info)
 {
 	exec_info->pid = fork();
-	if (exec_info->pid == FAILURE)
+	if (exec_info->pid == FAILURE) // fork 실패
 	{
 		ft_free_all(parse, exec);
 		return (ft_perror(FAILURE));
 	}
-	else if (exec_info->pid == CHILD_PID)
+	else if (exec_info->pid == CHILD_PID) // 자식 프로세스면
+	{
 		ft_exec_cmd(info, parse, exec, exec_info);
+		//exit (SUCCESS); // 종료 시킬 필요가 있나?
+	}
 	else
 	{
 		if (ft_parent(exec, exec_info) == FAILURE)

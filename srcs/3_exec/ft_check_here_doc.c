@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:36:06 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 20:29:00 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:45:38 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ int	ft_check_here_doc(t_exec *exec)
 	if (here_doc_pid == FAILURE)
 		return (FAILURE);
 	else if (here_doc_pid == CHILD_PID)
+	{
 		ft_search_here_doc(exec);
+		exit (SUCCESS); // child process 가 계속 진행하지 못하게 종료시킴
+	}
 	signal(SIGINT, ft_sig_for_here_doc_parent);
 	if (waitpid(-1, &child_status, 0) == FAILURE)
 		return (ft_perror(FAILURE));
