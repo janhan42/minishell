@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/20 18:15:34 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:06:41 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,16 @@ int	main(int ac, char **av, char **ev)
 	while (TRUE)
 	{
 		ft_sig_init(&info);
-		parse.line = readline("\033minishell : ");
+		parse.line = readline("minishell$ ");
 		if (parse.line == NULL) // 종료되어야 하는 부분
 		{
 			ft_list_clear(&info.mini_ev);
-			ft_putstr_fd("\x1b[1A\033[9Cexit\n", STDOUT_FILENO);
+			ft_putstr_fd("\x1b[1A\033[11Cexit\n", STDOUT_FILENO);
 			return (EXIT_SUCCESS);
 		}
 		if (parse.line[0] == '\0')
 		{
+			printf("We are here\n");
 			free(parse.line);
 			continue ;
 		}

@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:25:46 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 16:57:37 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/21 16:23:24 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ static int	ft_wait_child(t_exec *exec)
 
 static int	ft_here_doc(t_parse *parse, t_exec *exec)
 {
+	// 히어독이 있는지 확인 먼저 해야해서 아래 조건문 추가함
+	if (exec->exec_arr->redirect->type != HERE_DOC)
+		return (SUCCESS);
 	if (ft_check_here_doc(exec) == FAILURE)
 	{
 		ft_free_all(parse, exec);

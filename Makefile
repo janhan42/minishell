@@ -6,7 +6,7 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/03/19 14:45:46 by janhan           ###   ########.fr        #
+#    Updated: 2024/03/21 16:03:30 by sangshin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CC						=	cc
 CFLAGS					=	-Wall -Wextra -Werror
 RM						=	rm -f
 
-#READLINE_LINK			=	-l readline
+READLINE_LINK			=	-l readline
 #	FOR M1 MAC
-READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
+#READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
 
 INCLUDES				=	includes/
 
@@ -94,14 +94,14 @@ all : $(NAME)
 
 $(NAME) : $(OBJS_MAND)
 	@echo $(CURSIVE)$(YELLOW) "      - Making $(NAME) -" $(NONE)
-	@make -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) $(LIBFT_A)  $^ -o $@ $(READLINE_LINK)
+	@make -C $(LIBFT_DIR) -s
+	@$(CC) -g $(CFLAGS) $(LIBFT_A)  $^ -o $@ $(READLINE_LINK)
 	@echo $(CURSIVE)$(YELLOW) "        - Compiling $(NAME) -" $(NONE)
-	@echo $(GREEN) "            - philo Complete -"$(NONE)
+	@echo $(GREEN) "            - Minishell Complete -"$(NONE)
 
 %.o : %.c
 	@echo $(CURSIVE)$(YELLOW) "      - Making object files -" $(NONE)
-	@$(CC) $(CFLAGS) -I/opt/homebrew/opt/readline/include -c $< -o $@
+	@$(CC) -g $(CFLAGS) -I/opt/homebrew/opt/readline/include -c $< -o $@
 
 clean :
 	@rm -fr $(OBJS_MAND)
