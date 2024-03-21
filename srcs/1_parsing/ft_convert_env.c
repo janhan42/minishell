@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:59:19 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 15:23:41 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/21 20:26:46 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ static int	ft_add_env(t_parse *parse)
 static int	ft_find_env(t_info *info, t_parse *parse)
 {
 	ft_set_quote_flag(parse);
-	if (parse->squote_flag == FALSE && parse->token->str[parse->str_index] == '$'
+	if (parse->squote_flag == FALSE && parse->token->str[parse->str_index]
+		== '$'
 		&& (ft_isalpha(parse->token->str[parse->str_index + 1])
 			|| parse->token->str[parse->str_index + 1] == '_'
 			|| parse->token->str[parse->str_index + 1] == '-'

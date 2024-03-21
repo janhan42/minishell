@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 00:27:30 by janhan            #+#    #+#             */
-/*   Updated: 2024/02/28 00:29:37 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/21 20:34:50 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	ft_is_env(t_info *info, t_parse *parse)
 	env_node = info->mini_ev.front_node;
 	while (env_node)
 	{
-		if (ft_strncmp(env_node->content, parse->target_ev, ft_strlen(parse->target_ev)) == 0)
+		if (ft_strncmp(env_node->content,
+				parse->target_ev, ft_strlen(parse->target_ev)) == 0)
 		{
 			parse->ev_val = ft_strdup(ft_strchr(env_node->content, '=') + 1);
 			parse->ev_val_len = ft_strlen(parse->ev_val);

@@ -6,13 +6,13 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:33:48 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/17 09:39:19 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/21 20:30:02 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int ft_exec_builtin_parent(t_info *info, t_parse *parse,
+int	ft_exec_builtin_parent(t_info *info, t_parse *parse,
 	t_exec *exec, t_exec_info *exec_info)
 {
 	exec_info->builtin_parent = TRUE;
@@ -25,5 +25,4 @@ int ft_exec_builtin_parent(t_info *info, t_parse *parse,
 	if (ft_strncmp(exec_info->cmd[0], "exit", ft_strlen("exit") + 1) == 0)
 		ft_exit_builtin(&info->mini_ev, parse, exec, exec_info);
 	return (SUCCESS);
-
 }

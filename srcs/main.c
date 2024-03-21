@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 19:05:54 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:36:19 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 
 /* print test function */
 void	print_tokens(t_parse *parse)
@@ -61,6 +60,7 @@ void	print_exec(t_exec *exec)
 	}
 	printf("=========\n\n");
 }
+
 /**
  * @brief
  * 사실상 메인
@@ -81,10 +81,11 @@ static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 	ft_free_all(parse, exec);
 }
 
-void check(void)
+void	check(void)
 {
 	system("leaks minishell");
 }
+
 int	main(int ac, char **av, char **ev)
 {
 	t_info		info;

@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:37:19 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 14:38:27 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/21 20:33:31 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_cmd_is_directory(char *cmd_path)
 {
-	DIR *dir;
+	DIR	*dir;
 
 	dir = opendir(cmd_path);
 	if (dir != NULL)

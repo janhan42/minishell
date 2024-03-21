@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:36:06 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 14:44:34 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/21 20:29:00 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void	ft_get_here_doc(t_redirect *redirect)
 	char	*limiter;
 	int		temp_fd;
 
-	temp_fd = open("/tmp/temp_fd", O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0644);
+	temp_fd = open("/tmp/temp_fd",
+			O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0644);
 	if (temp_fd == FAILURE)
 		exit(ft_perror(errno));
 	limiter = ft_strjoin(redirect->value, "\n");

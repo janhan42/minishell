@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:10:50 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 16:06:18 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/21 20:28:00 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ static int	ft_malloc_redirect(t_parse *parse, t_exec_info *exec_info)
 
 static void	ft_add_cmd(t_parse *parse, t_exec_info *exec_info)
 {
-	exec_info->cmd[exec_info->cmd_index] = parse->tokens[parse->token_index].str;
+	exec_info->cmd[exec_info->cmd_index]
+		= parse->tokens[parse->token_index].str;
 	if (exec_info->cmd_index == 0)
 		exec_info->cmd_path = exec_info->cmd[exec_info->cmd_index];
 	exec_info->cmd_index++;

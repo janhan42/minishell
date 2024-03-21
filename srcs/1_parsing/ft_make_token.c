@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:32:02 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 15:19:40 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/21 20:27:29 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	ft_make_token(t_parse *parse, t_token_type type)
 {
 	parse->tokens[parse->token_index].type = type;
 	parse->temp_str
-		= (char *)ft_calloc(parse->line_index - parse->start_index + 2, sizeof(char));
+		= (char *)ft_calloc(parse->line_index
+			- parse->start_index + 2, sizeof(char));
 	if (parse->temp_str == NULL)
 		return (ft_error("Failed malloc temp_str", FAILURE));
 	ft_strlcpy(parse->temp_str, &parse->line[parse->start_index],

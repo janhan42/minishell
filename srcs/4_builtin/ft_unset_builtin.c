@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:00:03 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 19:27:32 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:32:38 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,5 @@ int	ft_unset_builtin(t_info *info, t_exec_info *exec_info)
 	if (exec_info->builtin_parent == TRUE)
 		return (SUCCESS);
 	else
-	 	exit(SUCCESS);
+		exit(SUCCESS);
 }

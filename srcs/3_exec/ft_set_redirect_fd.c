@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:21:34 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 16:18:08 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/21 20:31:15 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void	ft_redirect_out1(t_exec_info *exec_info, t_redirect *redirect)
 	if (exec_info->outfile_fd != NONE)
 		if (close(exec_info->outfile_fd) == FAILURE)
 			exit(ft_perror(errno));
-	exec_info->outfile_fd = open (redirect->value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	exec_info->outfile_fd = open
+		(redirect->value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (exec_info->outfile_fd == FAILURE)
 		exit(ft_perror(errno));
 }
@@ -28,7 +29,8 @@ static void	ft_redirect_out2(t_exec_info *exec_info, t_redirect *redirect)
 	if (exec_info->outfile_fd != NONE)
 		if (close(exec_info->outfile_fd) == FAILURE)
 			exit(ft_perror(errno));
-	exec_info->outfile_fd = open(redirect->value, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	exec_info->outfile_fd = open
+		(redirect->value, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (exec_info->outfile_fd == FAILURE)
 		exit(ft_perror(errno));
 }

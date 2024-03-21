@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:48:52 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 11:12:08 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/21 20:31:46 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-static char **ft_echo_builtin_malloc_str(t_exec_info *exec_info)
+static char	**ft_echo_builtin_malloc_str(t_exec_info *exec_info)
 {
 	char	**str;
 	size_t	str_size;
@@ -74,7 +74,7 @@ static void	ft_echo_builtin_print_str(char **str, int n_flag)
 		printf("\n");
 }
 
-int ft_echo_builtin(t_exec_info *exec_info)
+int	ft_echo_builtin(t_exec_info *exec_info)
 {
 	char	**str;
 	size_t	str_i;

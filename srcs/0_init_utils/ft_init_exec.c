@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_Exec.c                                     :+:      :+:    :+:   */
+/*   ft_init_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:54:33 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/01 19:05:53 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/21 20:25:54 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	ft_make_path_envp(t_info *info, t_parse *parse, t_exec *exec)
 {
 	char	*path;
-	t_node 	*node;
+	t_node	*node;
 
 	node = info->mini_ev.front_node;
 	while (node && ft_strncmp(node->content, "PATH=", 5) != 0)
@@ -45,7 +45,7 @@ int	ft_init_exec(t_info *info, t_parse *parse, t_exec *exec)
 	exec->prev_pipe_fd = NONE;
 	exec->exec_arr
 		= (t_exec_info *)malloc(sizeof(t_exec_info) * exec->exec_arr_size);
-	if (exec->exec_arr ==  NULL)
+	if (exec->exec_arr == NULL)
 	{
 		free(exec->path_ev);
 		ft_free_tokens(parse, parse->token_count);
