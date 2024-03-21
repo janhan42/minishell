@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 16:06:41 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/21 19:05:54 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 		return ;
 	if (ft_exec(info, parse, exec) == FAILURE)
 		return ;
-	// print_tokens(parse); // test
-	// print_exec(exec); // test
+	//print_tokens(parse); // test
+	//print_exec(exec); // test
 	ft_free_all(parse, exec);
 }
 
@@ -104,7 +104,6 @@ int	main(int ac, char **av, char **ev)
 		}
 		if (parse.line[0] == '\0')
 		{
-			printf("We are here\n");
 			free(parse.line);
 			continue ;
 		}

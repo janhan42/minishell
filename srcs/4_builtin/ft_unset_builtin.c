@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:00:03 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 11:08:50 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/21 19:27:32 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ static int	ft_unset_builtin_arg_check(char *str)
 	size_t	i;
 
 	i = 0;
+	// unset '' -> 고치는 중
+	if (str[0] == '\0') // 첫글자가 널이면 뒤에 코드 실행되면 안됨
+		return (FAILURE);
+	// 추가부분 끝
 	if (ft_isalpha(str[0]) == FALSE && str[0] != '_')
 		return (SUCCESS);
 	while (str[i])
@@ -69,7 +73,7 @@ static void	ft_unset_builtin_del_node(t_info *info, t_exec_info *exec_info)
 		{
 			// ft_printf_err("unset: '%s': not a vaild identifier\n",
 			// 	exec_info->cmd[i++]);
-			printf("unset: '%s': not a vaild identifier\n",
+			printf("unset: `%s': not a vaild identifier\n",
 				exec_info->cmd[i++]);
 			continue ;
 		}
