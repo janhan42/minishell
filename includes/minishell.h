@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/20 18:29:35 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:22:54 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ void	ft_set_pipe_fd(t_exec *exec, t_exec_info *exec_info);
 void	ft_set_redirect_fd(t_exec_info *exec_info);
 
 /* 4_builtin */
-int ft_cd_builtin(t_exec_info *exec_info);
+int ft_cd_builtin(t_info *info, t_exec_info *exec_info);
 int ft_echo_builtin(t_exec_info *exec_info);
 int	ft_env_builtin(t_info *info);
 
