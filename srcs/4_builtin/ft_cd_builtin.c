@@ -6,12 +6,63 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:43:03 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 22:47:23 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:27:36 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stdlib.h>
+
+static void	ft_change_oldpwd(t_info *info)
+{
+	char	path[PATH_MAX];
+	char	*oldpwd;
+	char	*result;
+	t_node	*current;
+
+	oldpwd = ft_strdup("OLDPWD=");
+	if (!oldpwd)
+		exit(ft_error("OLDPWD malloc failed", FAILURE));
+	current = info->mini_ev.front_node;
+		while (current && ft_strncmp(current->content, "OLDPWD=", 7))
+			current = current->next_node;
+		getcwd(path, sizeof(path));
+		result = ft_strjoin(oldpwd, path);
+		free(oldpwd);
+		free(current->content);
+		current->content = result;
+}
+
+static void	ft_change_pwd(t_info *info)
+{
+	char	path[PATH_MAX];
+	char	*oldpwd;
+	char	*result;
+	t_node	*current;
+
+	oldpwd = ft_strdup("PWD=");
+	if (!oldpwd)
+		exit(ft_error("PWD malloc failed", FAILURE));
+	current = info->mini_ev.front_node;
+		while (current && ft_strncmp(current->content, "PWD=", 4))
+			current = current->next_node;
+		getcwd(path, sizeof(path));
+		result = ft_strjoin(oldpwd, path);
+		free(oldpwd);
+		free(current->content);
+		current->content = result;
+}
+
+static char	*ft_find_path(t_info *info)
+{
+	t_node	*current;
+	char	*path;
+
+	current = info->mini_ev.front_node;
+		while (current && ft_strncmp(current->content, "HOME=", 5))
+			current = current->next_node;
+		path = current->content + 5;
+	return (path);
+}
 
 int	ft_cd_builtin(t_info *info, t_exec_info *exec_info)
 {
@@ -19,12 +70,8 @@ int	ft_cd_builtin(t_info *info, t_exec_info *exec_info)
 
 	path = exec_info->cmd[1];
 	if (path == NULL)
-	{
-		if (exec_info->builtin_parent == TRUE)
-			return (SUCCESS);
-		else
-			exit(EXIT_SUCCESS);
-	}
+		path = ft_find_path(info);
+	ft_change_oldpwd(info);
 	if (chdir(path) == FAILURE)
 	{
 		g_child_exit_code = 1;
@@ -36,14 +83,7 @@ int	ft_cd_builtin(t_info *info, t_exec_info *exec_info)
 		else
 			exit(EXIT_SUCCESS);
 	}
-	// $PWD, $OLDPWD 바꾸는 부분
-	// $PWD 는 지금 psth 넣어주면 될 것 같고
-	// $OLDPWD 는 $PWD에 있던거 넣어주면 될듯
-	// 그러려면 mini_ev 리스트 여기까지 가져와야함;;;;;;;;;
-	
-	// ft_change_path("OLDPWD", "PWD");
-	// ft_change_path("PWD", path);
-	//
+	ft_change_pwd(info);
 	if (exec_info->builtin_parent == TRUE)
 		return (SUCCESS);
 	else

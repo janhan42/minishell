@@ -6,13 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:48:52 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 20:31:46 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/23 00:41:44 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stddef.h>
-#include <stdlib.h>
 
 static char	**ft_echo_builtin_malloc_str(t_exec_info *exec_info)
 {

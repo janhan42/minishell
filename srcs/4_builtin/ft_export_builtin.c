@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:45:56 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 22:43:18 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:48:48 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,7 @@ static void	ft_export_builtin_arg(t_info *info, t_exec_info *exec_info)
 	{
 		if (ft_export_builtin_arg_check(exec_info->cmd[i]) == FAILURE)
 		{
-			// ft_printf_err("export: %s: not a vaild identifier\n",
-			// 	exec_info->cmd[i++]);
-			printf("export: %s: not a vaild identifier\n",
+			ft_printf_err("export: %s: not a vaild identifier\n",
 				exec_info->cmd[i++]);
 			continue ;
 		}

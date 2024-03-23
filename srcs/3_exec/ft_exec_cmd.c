@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 21:55:13 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:39:58 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static char	**ft_make_envp(t_list *mini_envp)
 		exit(ft_error("envp malloc failed\n", EXIT_FAILURE));
 	count = 0;
 	node = mini_envp->front_node;
-	while (node != NULL)
+	while (node->next_node != NULL)
 	{
 		envp[count] = (char *)node->content;
 		node = node->next_node;

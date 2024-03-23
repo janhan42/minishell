@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:21:34 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 21:57:00 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:48:26 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ static void	ft_redirect_in1(t_exec_info *exec_info, t_redirect *redirect)
 	exec_info->infile_fd = open(redirect->value, O_RDONLY);
 	if (exec_info->infile_fd == FAILURE)
 	{
-		// ft_printf_err("%s: No such file or directory\n", redirect->value);
-		printf("%s: No such file or directory\n", redirect->value);
+		ft_printf_err("%s: No such file or directory\n", redirect->value);
 		exit(1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 18:22:50 by tnam              #+#    #+#             */
-/*   Updated: 2024/03/01 19:51:21 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/22 19:51:10 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ size_t	ft_strlen(const char *s)
 
 	len = 0;
 	while (s[len] != '\0')
-	{
 		len++;
-	}
 	return (len);
 }
 

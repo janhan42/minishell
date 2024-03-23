@@ -6,15 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 22:22:59 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:29:19 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include <readline/history.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 /* print test function */
 void	print_tokens(t_parse *parse)

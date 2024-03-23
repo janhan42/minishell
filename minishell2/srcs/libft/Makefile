@@ -6,7 +6,7 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 13:40:39 by janhan            #+#    #+#              #
-#    Updated: 2024/01/11 08:57:51 by janhan           ###   ########.fr        #
+#    Updated: 2024/03/22 14:55:33 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,15 +49,6 @@ SRCS =				ft_isprint.c			\
 					ft_putstr_fd.c			\
 					ft_putendl_fd.c			\
 					ft_putnbr_fd.c			\
-					ft_lstnew.c				\
-					ft_lstadd_front.c		\
-					ft_lstsize.c			\
-					ft_lstlast.c			\
-					ft_lstadd_back.c		\
-					ft_lstdelone.c			\
-					ft_lstclear.c			\
-					ft_lstiter.c			\
-					ft_lstmap.c				\
 					ft_printf.c 			\
 					ft_print_char.c 		\
 					ft_print_str.c 			\

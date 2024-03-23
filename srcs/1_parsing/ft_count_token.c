@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:05:11 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 15:18:32 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/22 14:49:22 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ static int	ft_quote_process(t_parse *parse)
 	if (parse->line[parse->line_index] == '\0')
 	{
 		g_child_exit_code = 258;
-		// ft_printf_err("Syntax Error: Quote %c is not closed\n", end_quote);
-		printf("Syntax Error: Quote %c is not closed\n", end_quote);
+		ft_printf_err("Syntax Error: Quote %c is not closed\n", end_quote);
 		return (FAILURE);
 	}
 	return (SUCCESS);
