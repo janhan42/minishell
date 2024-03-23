@@ -6,7 +6,7 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/03/22 21:05:11 by janhan           ###   ########.fr        #
+#    Updated: 2024/03/23 20:33:26 by sangshin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM						=	rm -f
 
 READLINE_LINK			=	-l readline
 #	FOR M1 MAC
-READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
+#READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
 
 INCLUDES				=	includes/
 

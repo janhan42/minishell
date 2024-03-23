@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:59:19 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/23 00:37:43 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/23 21:04:27 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_check_env(t_info *info, t_parse *parse)
 		parse->str_index++;
 	parse->temp_str_len = parse->str_index - parse->start_index + 1;
 	parse->temp_str = (char *)ft_calloc(parse->temp_str_len, sizeof(char));
-	printf("%s\n", parse->temp_str);
+	//printf("%s\n", parse->temp_str);
 	if (parse->temp_str == NULL)
 		return (ft_error("Failed malloc temp_str", FAILURE));
 	ft_strlcpy(parse->temp_str, &parse->token->str[parse->start_index + 1],
