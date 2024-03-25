@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:59:19 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/23 21:26:14 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/24 01:52:12 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ static int	ft_add_env(t_parse *parse)
 
 static int	ft_find_env(t_info *info, t_parse *parse)
 {
+	//FIX: parse->str_index가 이상해짐
+	//언제? 달러 뒤에 이상한거 나올때
+	//-> 환경변수에 없는 게 들어왔을 때
 	ft_set_quote_flag(parse);
 	if (parse->squote_flag == FALSE && parse->token->str[parse->str_index]
 		== '$'
