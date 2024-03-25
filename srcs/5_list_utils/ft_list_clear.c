@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 14:05:15 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/20 18:15:32 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/25 22:47:45 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,18 @@ void	ft_list_clear(t_list *list)
 		free(tmp);
 		tmp = next;
 	}
+}
+
+void	*list_content_finder(t_node *head, void *content)
+{
+	t_node	*cur;
+
+	cur = head;
+	while (cur)
+	{
+		if (ft_strncmp(cur->content, content, ft_strlen(content)) == 0)
+			return (cur->content);
+		cur = cur->next_node;
+	}
+	return (NULL);
 }

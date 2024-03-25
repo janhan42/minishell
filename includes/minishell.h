@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/25 20:14:18 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/25 22:43:49 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ int		ft_exit_builtin(t_list *mini_ev, t_parse *parse, t_exec *exec, t_exec_info 
 int		ft_export_builtin(t_info *info, t_exec_info *exec_info);
 int		ft_pwd_builtin(void);
 int		ft_unset_builtin(t_info *info, t_exec_info *exec_info);
+void	*list_content_finder(t_node *head, void *content);
 
 /* 6_UTILS */
 void	ft_cmd_is_directory(char *cmd_path);

@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/25 21:47:56 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/25 22:41:54 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	main(int ac, char **av, char **ev)
 	t_exec		exec;
 
 	ft_init(ac, av, ev, &info);
+	
 	while (TRUE)
 	{
 		ft_sig_init(&info);

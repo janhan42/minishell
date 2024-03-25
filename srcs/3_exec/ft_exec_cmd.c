@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/25 21:17:58 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/25 22:58:10 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,13 @@ static char	**ft_make_envp(t_list *mini_envp)
 void	ft_exec_cmd(t_info *info, t_parse *parse,
 	t_exec *exec, t_exec_info *exec_info)
 {
+
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
+	/*
+	char	*path_ev;
+	path_ev = (char *)list_content_finder(info->mini_ev.front_node, "PATH");
+	*/
 	if (ft_is_builtin(exec_info) == FALSE
 		&& ft_find_cmd(exec, exec_info) == FAILURE)
 	{
