@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:10:50 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/25 21:18:19 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/25 21:48:23 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ static void	ft_add_cmd(t_parse *parse, t_exec_info *exec_info)
 {
 	exec_info->cmd[exec_info->cmd_index]
 		= parse->tokens[parse->token_index].str;
-	if (exec_info->cmd_index == 0 || exec_info->cmd_path[0] == 0)
+	if (exec_info->cmd_index == 0 || exec_info->cmd_path[0] == '\0')
 	{
 		exec_info->cmd_path = exec_info->cmd[exec_info->cmd_index];
 		exec_info->cmd_index = 0;
 	}
+	if (exec_info->cmd[exec_info->cmd_index][0] == '\0')
+		return ; // cmd가 비어있으면 인덱스 안늘리고 리턴
 	exec_info->cmd_index++;
 }
 
