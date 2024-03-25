@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:59:19 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/24 01:52:12 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:42:42 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ static int	ft_find_env(t_info *info, t_parse *parse)
 				return (FAILURE);
 			parse->str_index = parse->start_index + parse->ev_val_len - 1;
 		}
-		else
+		else // 환경변수가 없을 때
 		{
 			ft_strlcpy(&parse->token->str[parse->start_index],
 				&parse->token->str[parse->str_index + 1],
@@ -138,6 +138,13 @@ int	ft_convert_env(t_info *info, t_parse *parse)
 			}
 			if (ft_find_env(info, parse) == FAILURE)
 				return (FAILURE);
+			//FIX: parse->str_index가 이상해짐
+			//ft_exec 부분도 같이 수정해야함
+			//
+			if (parse->str_index < 0)
+			{
+				break ;
+			}
 			parse->str_index++;
 		}
 		parse->token_index++;

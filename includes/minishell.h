@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 22:22:54 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:14:18 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct s_parse
 	char			*temp_str; // 이거는 파서용 temp 용
 	size_t			temp_str_len; // 파서용 temp 길이
 	size_t			start_index; // temp의 인덱스
-	size_t			str_index; // 얘도 인덱스
+	ssize_t			str_index; // 얘도 인덱스
 	int				squote_flag; // ' 플래그
 	int				dquote_flag; // " 플래그
 	char			*target_ev; // 명령어 실행 ev

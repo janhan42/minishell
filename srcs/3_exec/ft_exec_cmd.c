@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/22 19:39:58 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/25 21:17:58 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info)
 	ft_cmd_is_directory(cmd_path);
 	if (cmd_path == NULL || access(cmd_path, X_OK) == SUCCESS)
 		return (SUCCESS);
-	if (cmd_path[0] == '\0')
-		return (FAILURE);
+	if (cmd_path[0] == '\0') //FIX: cmd_path가 빈문자열이면 cmd_path랑 cmd배열 바꿔주기
+		exit(SUCCESS);
 	i = 0;
 	while (exec->path_ev[i])
 	{
