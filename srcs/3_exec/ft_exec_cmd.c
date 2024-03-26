@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/25 22:58:10 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:32:52 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info)
 
 	cmd_path = exec_info->cmd_path;
 	ft_cmd_is_directory(cmd_path);
-	if (cmd_path == NULL || access(cmd_path, X_OK) == SUCCESS)
+	if (cmd_path == NULL/* || access(cmd_path, X_OK) == SUCCESS*/)
 		return (SUCCESS);
 	if (cmd_path[0] == '\0') //FIX: cmd_path가 빈문자열이면 cmd_path랑 cmd배열 바꿔주기
 		exit(SUCCESS);
@@ -114,8 +114,8 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 	char	*path_ev;
 	path_ev = (char *)list_content_finder(info->mini_ev.front_node, "PATH");
 	*/
-	if (ft_is_builtin(exec_info) == FALSE
-		&& ft_find_cmd(exec, exec_info) == FAILURE)
+	if (ft_find_cmd(exec, exec_info) == FAILURE
+		&& ft_is_builtin(exec_info) == FALSE)
 	{
 		ft_printf_err("%s: command not found\n", exec_info->cmd[0]);
 		ft_free_all(parse, exec);
@@ -123,6 +123,9 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 	}
 	else
 	{
+		if (exec_info->cmd[parse->token_count - 1] != NULL
+			&& exec_info->cmd[parse->token_count - 1][0] == '\0')
+			exec_info->cmd[parse->token_count - 1] = NULL;
 		ft_set_fd(exec, exec_info);
 		if (exec_info->cmd_path == NULL)
 			exit(EXIT_SUCCESS);
