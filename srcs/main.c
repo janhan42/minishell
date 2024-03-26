@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/26 13:35:22 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:09:34 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 		return ;
 	if (ft_exec(info, parse, exec) == FAILURE)
 		return ;
-	//print_tokens(parse); // test
-	//print_exec(exec); // test
+	print_tokens(parse); // test
+	print_exec(exec); // test
 	ft_free_all(parse, exec);
 }
 
@@ -89,7 +89,7 @@ int	main(int ac, char **av, char **ev)
 	t_exec		exec;
 
 	ft_init(ac, av, ev, &info);
-	
+
 	while (TRUE)
 	{
 		ft_sig_init(&info);

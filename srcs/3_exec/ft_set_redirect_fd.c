@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:21:34 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/22 14:48:26 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/26 14:07:50 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static void	ft_redirect_here_doc(t_exec_info *exec_info)
 	if (exec_info->infile_fd != NONE)
 		if (close(exec_info->infile_fd) == FAILURE)
 			exit(ft_perror(errno));
-	//exec_info->infile_fd = open("/tmp/breakshell", O_RDONLY); // 파일 이름이 잘못되어있어서 고침
 	exec_info->infile_fd = open("/tmp/temp_fd", O_RDONLY);
 	if (exec_info->infile_fd == FAILURE)
 		exit(ft_perror(1));

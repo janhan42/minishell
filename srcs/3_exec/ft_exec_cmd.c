@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/26 13:32:52 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:05:23 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 	if (ft_find_cmd(exec, exec_info) == FAILURE
 		&& ft_is_builtin(exec_info) == FALSE)
 	{
+		printf("%s\n", exec_info->cmd_path);
 		ft_printf_err("%s: command not found\n", exec_info->cmd[0]);
 		ft_free_all(parse, exec);
 		exit(127);

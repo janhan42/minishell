@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:59:19 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/25 22:04:28 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:19:59 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,12 +110,16 @@ static int	ft_find_env(t_info *info, t_parse *parse)
 				return (FAILURE);
 			parse->str_index = parse->start_index + parse->ev_val_len - 1;
 		}
-		else // 환경변수가 없을 때
+		else // 환경변수가 없을 때 여기로 들어와서
+		/*
+			bash 는 없는 환경변수를 참조하려고 하면, 해당 변수 대신 빈 문자열로 대체하고, 이후 명령어는 그 빈 문자열을 사용해 실행된다.
+		*/
 		{
 			ft_strlcpy(&parse->token->str[parse->start_index],
 				&parse->token->str[parse->str_index + 1],
 				ft_strlen(parse->token->str) + 1);
 			parse->str_index -= parse->temp_str_len + 1;
+			printf("없을땐 여기로 들어오나 ? %s\n", parse->token->str);
 		}
 	}
 	return (SUCCESS);
