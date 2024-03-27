@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:00:03 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 18:28:57 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 22:15:15 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,8 @@ static int	ft_unset_builtin_arg_check(char *str)
 	size_t	i;
 
 	i = 0;
-	// unset '' -> 고치는 중
-	if (str[0] == '\0') // 첫글자가 널이면 뒤에 코드 실행되면 안됨
+	if (str[0] == '\0')
 		return (FAILURE);
-	// 추가부분 끝
 	if (ft_isalpha(str[0]) == FALSE && str[0] != '_')
 		return (SUCCESS);
 	while (str[i])

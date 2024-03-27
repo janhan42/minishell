@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 20:40:46 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 22:22:20 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 			exit(126);
 		}
 	}
+	// if (access(cmd_path, X_OK) == SUCCESS)
+	// 	return (SUCCESS);
 	if (ft_access_path(exec, exec_info) == SUCCESS)
 		return (SUCCESS);
 	return (FAILURE);
@@ -150,7 +152,7 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
-	if (ft_find_cmd(exec, exec_info, parse) == FAILURE
+	if (access(exec_info->cmd_path, X_OK) == FAILURE && ft_find_cmd(exec, exec_info, parse) == FAILURE
 		&& ft_is_builtin(exec_info) == FALSE)
 	{
 		ft_printf_err("%s: command not found\n", exec_info->cmd[0]);

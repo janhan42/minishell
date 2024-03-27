@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 14:06:02 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 15:20:37 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 22:14:56 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,20 +86,18 @@ int	ft_list_del_node(t_list *list, t_node *node)
 	finder = list->front_node;
 	if (list == NULL || node == NULL)
 		return (ft_error("argument has been worng", FAILURE));
-	if (list->front_node == node) // 첫 노드가 지워야 하는 노드일 때
+	if (list->front_node == node)
 	{
 		list->front_node = node->next_node;
 		free(node->content);
 		free(node);
 		return (SUCCESS);
 	}
-	while (finder != node && finder->next_node != node) // 노드 찾기
+	while (finder != node && finder->next_node != node)
 		finder = finder->next_node;
 	finder->next_node = node->next_node;
-	// 찾은 노드의 next_node를 지워야 하는 노드의 next_node로 바꿔줌
 	free(node->content);
 	free(node);
 	node = 0;
 	return (SUCCESS);
-	// 첫 노드가 지워야 하는 거일 때 조건 추가
 }

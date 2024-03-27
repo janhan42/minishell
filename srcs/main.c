@@ -6,14 +6,14 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 19:23:23 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 22:18:14 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 /* print test function */
-void	print_tokens(t_parse *parse)
+void	print_tokens(t_parse *parse) // 지우고 낼것
 {
 	char	*type;
 
@@ -35,7 +35,7 @@ void	print_tokens(t_parse *parse)
 }
 
 /* print test function */
-void	print_exec(t_exec *exec)
+void	print_exec(t_exec *exec) // 지우고 낼것
 {
 	printf("\n=========\n");
 	for (size_t i = 0; i < exec->exec_arr_size; i++)
@@ -59,13 +59,6 @@ void	print_exec(t_exec *exec)
 	printf("=========\n\n");
 }
 
-/**
- * @brief
- * 사실상 메인
- * @param info info 구조체 (기본 구조체)
- * @param parse parse 구조체 (파싱부)
- * @param exec  exec 구조체 (실행부)
- */
 static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 {
 	if (ft_parse(info, parse) == FAILURE)
@@ -74,12 +67,12 @@ static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 		return ;
 	if (ft_exec(info, parse, exec) == FAILURE)
 		return ;
-	// print_tokens(parse); // test
-	// print_exec(exec); // test
+	print_tokens(parse); // test 지우고 낼것
+	print_exec(exec); // test 지우고 낼것
 	ft_free_all(parse, exec);
 }
 
-void	check(void)
+void	check(void) // 지우고 낼것
 {
 	system("leaks minishell");
 }
@@ -91,12 +84,11 @@ int	main(int ac, char **av, char **ev)
 	t_exec		exec;
 
 	ft_init(ac, av, ev, &info);
-
 	while (TRUE)
 	{
 		ft_sig_init(&info);
 		parse.line = readline("minishell$ ");
-		if (parse.line == NULL) // 종료되어야 하는 부분
+		if (parse.line == NULL)
 		{
 			ft_list_clear(&info.mini_ev);
 			ft_putstr_fd("\x1b[1A\033[11Cexit\n", STDOUT_FILENO);
@@ -110,7 +102,7 @@ int	main(int ac, char **av, char **ev)
 		add_history(parse.line);
 		ft_parse_execute(&info, &parse, &exec);
 		free(parse.line);
-		// atexit(check);
+		// atexit(check); // 지우고 낼것
 	}
 	return (EXIT_SUCCESS);
 }

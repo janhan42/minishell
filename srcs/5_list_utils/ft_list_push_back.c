@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:49:35 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 15:16:53 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 22:14:36 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_list_push_back(void *content, t_list *list)
 	finder = list->front_node;
 	while (finder && finder->next_node)
 		finder = finder->next_node;
-	if (finder == NULL) // list is empty
+	if (finder == NULL)
 		list->front_node = new_node;
 	else
 		finder->next_node = new_node;
