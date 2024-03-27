@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 22:27:17 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 22:58:10 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,9 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 	cmd_path = exec_info->cmd_path;
 	if (cmd_path == NULL /*access(cmd_path, X_OK) == SUCCESS*/)
 		return (SUCCESS); // ls를 path에서 안찾아서 access 주석했음 ㅅㅂ
-	if (cmd_path[0] == '\0') //FIX: cmd_path가 빈문자열이면 cmd_path랑 cmd배열 바꿔주기
-		exit(SUCCESS);
-	if (exec->path_ev[0] == NULL && !ft_is_builtin(exec_info))
+	if (cmd_path[0] == 0)
 	{
-		ft_printf_err("minishell: %s: No such file or directory\n", exec_info->cmd[0]);
+		ft_printf_err("%s: command not found\n", exec_info->cmd[0]);
 		ft_free_all(parse, exec);
 		exit(127);
 	}
@@ -90,6 +88,12 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 		}
 		if (access(cmd_path, X_OK) == SUCCESS)
 			return (SUCCESS);
+	}
+	if (exec->path_ev[0] == NULL && !ft_is_builtin(exec_info))
+	{
+		ft_printf_err("minishell: %s: No such file or directory\n", exec_info->cmd[0]);
+		ft_free_all(parse, exec);
+		exit(127);
 	}
 	if (ft_access_path(exec, exec_info) == SUCCESS)
 		return (SUCCESS);
@@ -156,6 +160,7 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 		&& ft_is_builtin(exec_info) == FALSE)
 	{
 		ft_printf_err("%s: command not found\n", exec_info->cmd[0]);
+		printf ("%s\n", exec_info->cmd[0]);
 		ft_free_all(parse, exec);
 		exit(127);
 	}

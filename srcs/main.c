@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 22:18:14 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 22:58:51 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 		return ;
 	if (ft_exec(info, parse, exec) == FAILURE)
 		return ;
-	print_tokens(parse); // test 지우고 낼것
-	print_exec(exec); // test 지우고 낼것
+	// print_tokens(parse); // test 지우고 낼것
+	// print_exec(exec); // test 지우고 낼것
 	ft_free_all(parse, exec);
 }
 
