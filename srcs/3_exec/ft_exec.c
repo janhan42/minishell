@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:25:46 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/26 13:31:16 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/27 23:25:05 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,36 @@ static int	ft_wait_child(t_exec *exec)
 	return (SUCCESS);
 }
 
+static int	here_doc_loop_check(t_exec *exec)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (TRUE)
+	{
+		while (TRUE)
+		{
+			if (exec->exec_arr[i].redirect[j].value == 0)
+				return (FAILURE);
+			if (exec->exec_arr[i].redirect[j].type == HERE_DOC)
+				return (SUCCESS);
+			j++;
+		}
+		i++;
+	}
+	return (FAILURE);
+}
+
 static int	ft_here_doc(t_parse *parse, t_exec *exec)
 {
 	// 히어독이 있는지 확인 먼저 해야해서 아래 조건문 추가함
+	/*
 	if (exec->exec_arr->redirect->type != HERE_DOC)
+		return (SUCCESS);
+	*/
+	if (here_doc_loop_check(exec) == FAILURE)
 		return (SUCCESS);
 	if (ft_check_here_doc(exec) == FAILURE)
 	{
