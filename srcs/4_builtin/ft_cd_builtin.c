@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:43:03 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 18:59:20 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 20:19:23 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ static void	ft_change_oldpwd(t_info *info)
 	current = info->mini_ev.front_node;
 	while (current && ft_strncmp(current->content, "OLDPWD=", 7))
 		current = current->next_node;
+	if (current == NULL)
+	{
+		free(oldpwd);
+		return ;
+	}
 	getcwd(path, sizeof(path));
 	result = ft_strjoin(oldpwd, path);
 	free(oldpwd);

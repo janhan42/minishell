@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 19:59:02 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 20:40:46 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,9 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 		ft_free_all(parse, exec);
 		exit(127);
 	}
-	if (cmd_path[0] == '.' && (cmd_path[1] == '/' || cmd_path[0] == '/'))
+	if ((cmd_path[0] == '.' && cmd_path[1] == '/' ) || cmd_path[0] == '/')
 	{
+		ft_cmd_is_directory(cmd_path);
 		if (access(cmd_path, F_OK) == FAILURE)
 		{
 			ft_printf_err("minishell: %s: No such file or directory\n", exec_info->cmd[0]);
@@ -89,9 +90,6 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 		}
 	}
 	if (ft_access_path(exec, exec_info) == SUCCESS)
-		return (SUCCESS);
-	ft_cmd_is_directory(cmd_path);
-	if(access(cmd_path, X_OK) == SUCCESS)
 		return (SUCCESS);
 	return (FAILURE);
 }
@@ -176,7 +174,6 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 		ft_set_fd(exec, exec_info);
 		if (exec_info->cmd_path == NULL)
 			exit(EXIT_SUCCESS);
-		// printf("cmd_path = %s\n", exec_info->cmd_path);
 		if (ft_is_builtin(exec_info) == TRUE)
 			ft_exec_builtin(info, parse, exec, exec_info);
 		else
