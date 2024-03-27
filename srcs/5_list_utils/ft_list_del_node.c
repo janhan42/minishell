@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 14:06:02 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 15:20:53 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:20:37 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int	ft_list_del_node(t_list *list, t_node *node)
 	}
 	while (finder != node && finder->next_node != node) // 노드 찾기
 		finder = finder->next_node;
-	finder->next_node = node->next_node; // 찾은 노드의 next_node를 지워야 하는 노드의 next_node로 바꿔줌
+	finder->next_node = node->next_node;
+	// 찾은 노드의 next_node를 지워야 하는 노드의 next_node로 바꿔줌
 	free(node->content);
 	free(node);
 	node = 0;

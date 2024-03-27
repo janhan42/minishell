@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:10:50 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/26 13:27:52 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:28:48 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ static void	ft_add_redirect(t_parse *parse, t_exec_info *exec_info)
 		exec_info->redirect[exec_info->redirect_index].type = HERE_DOC;
 	exec_info->redirect[exec_info->redirect_index].value
 		= parse->tokens[parse->token_index + 1].str;
+	exec_info->redirect[exec_info->redirect_index].original
+		= parse->tokens[parse->token_index + 1].original;
 	exec_info->redirect_index++;
 }
 

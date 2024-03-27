@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:23:10 by janhan            #+#    #+#             */
-/*   Updated: 2024/02/27 23:23:55 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 14:16:47 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_free_tokens(t_parse *parse, size_t token_size)
 	while (i < token_size)
 	{
 		free(parse->tokens[i].str);
+		free(parse->tokens[i].original);
 		i++;
 	}
 	free(parse->tokens);

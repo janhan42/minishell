@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/26 14:09:34 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 15:29:13 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	print_exec(t_exec *exec)
 				break ;
 			printf("redirect[%zu].type = %u\n", j, exec->exec_arr[i].redirect[j].type);
 			printf("redirect[%zu].value = %s\n", j, exec->exec_arr[i].redirect[j].value);
+			printf("redirect[%zu].original = %s\n", j, exec->exec_arr[i].redirect[j].original);
 		}
 		printf("---------\n");
 	}
@@ -72,8 +73,8 @@ static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 		return ;
 	if (ft_exec(info, parse, exec) == FAILURE)
 		return ;
-	print_tokens(parse); // test
-	print_exec(exec); // test
+	// print_tokens(parse); // test
+	// print_exec(exec); // test
 	ft_free_all(parse, exec);
 }
 
@@ -108,6 +109,7 @@ int	main(int ac, char **av, char **ev)
 		add_history(parse.line);
 		ft_parse_execute(&info, &parse, &exec);
 		free(parse.line);
+		// atexit(check);
 	}
 	return (EXIT_SUCCESS);
 }

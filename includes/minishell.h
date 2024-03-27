@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/25 22:43:49 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:15:38 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef enum e_token_type
 typedef struct s_token
 {
 	t_token_type	type; // 토큰짜른거 타입
+	char			*original;
 	char			*str; // 짜른 토큰
 }	t_token;
 
@@ -119,7 +120,8 @@ typedef enum s_redirect_type // 리다이렉션 타입값
 typedef struct s_redirect
 {
 	t_redirect_type		type; // 타입
-	char				*value; // << < > >>
+	char				*value; // 리다이렉션 할 파일 이름
+	char				*original;
 }	t_redirect;
 
 typedef struct s_exec_info

@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:43:03 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/23 20:27:36 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 15:17:11 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static void	ft_change_oldpwd(t_info *info)
 	if (!oldpwd)
 		exit(ft_error("OLDPWD malloc failed", FAILURE));
 	current = info->mini_ev.front_node;
-		while (current && ft_strncmp(current->content, "OLDPWD=", 7))
-			current = current->next_node;
-		getcwd(path, sizeof(path));
-		result = ft_strjoin(oldpwd, path);
-		free(oldpwd);
-		free(current->content);
-		current->content = result;
+	while (current && ft_strncmp(current->content, "OLDPWD=", 7))
+		current = current->next_node;
+	getcwd(path, sizeof(path));
+	result = ft_strjoin(oldpwd, path);
+	free(oldpwd);
+	free(current->content);
+	current->content = result;
 }
 
 static void	ft_change_pwd(t_info *info)
@@ -43,13 +43,13 @@ static void	ft_change_pwd(t_info *info)
 	if (!oldpwd)
 		exit(ft_error("PWD malloc failed", FAILURE));
 	current = info->mini_ev.front_node;
-		while (current && ft_strncmp(current->content, "PWD=", 4))
-			current = current->next_node;
-		getcwd(path, sizeof(path));
-		result = ft_strjoin(oldpwd, path);
-		free(oldpwd);
-		free(current->content);
-		current->content = result;
+	while (current && ft_strncmp(current->content, "PWD=", 4))
+		current = current->next_node;
+	getcwd(path, sizeof(path));
+	result = ft_strjoin(oldpwd, path);
+	free(oldpwd);
+	free(current->content);
+	current->content = result;
 }
 
 static char	*ft_find_path(t_info *info)
@@ -58,9 +58,9 @@ static char	*ft_find_path(t_info *info)
 	char	*path;
 
 	current = info->mini_ev.front_node;
-		while (current && ft_strncmp(current->content, "HOME=", 5))
-			current = current->next_node;
-		path = current->content + 5;
+	while (current && ft_strncmp(current->content, "HOME=", 5))
+		current = current->next_node;
+	path = current->content + 5;
 	return (path);
 }
 

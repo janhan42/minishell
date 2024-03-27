@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:21:34 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/26 14:07:50 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 14:17:35 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ static void	ft_redirect_out1(t_exec_info *exec_info, t_redirect *redirect)
 			exit(ft_perror(errno));
 	exec_info->outfile_fd = open
 		(redirect->value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (redirect->value[0] == '\0')
+	{
+		ft_printf_err("%s: ambiguous redirect\n", redirect->original);
+		exit(1);
+	}
 	if (exec_info->outfile_fd == FAILURE)
 		exit(ft_perror(errno));
 }

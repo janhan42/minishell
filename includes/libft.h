@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:25:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 16:13:44 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 15:16:14 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ void	ft_print_p(void *addr, int *res);
 void	ft_print_s(char *str, int *res);
 void	ft_print_u(unsigned int nb, int *res);
 void	ft_print_x(unsigned int nbr, char x, int *res);
-int	ft_printf_err(const char *format, ...);
+int		ft_printf_err(const char *format, ...);
 
 #endif

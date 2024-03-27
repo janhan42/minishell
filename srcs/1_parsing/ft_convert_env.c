@@ -6,11 +6,12 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:59:19 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/26 15:19:59 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 15:20:18 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stdio.h>
 #include <sys/stat.h>
 
 static void	ft_set_quote_flag(t_parse *parse)
@@ -40,7 +41,6 @@ static int	ft_check_env(t_info *info, t_parse *parse)
 		parse->str_index++;
 	parse->temp_str_len = parse->str_index - parse->start_index + 1;
 	parse->temp_str = (char *)ft_calloc(parse->temp_str_len + 1, sizeof(char));
-	//printf("%s\n", parse->temp_str);
 	if (parse->temp_str == NULL)
 		return (ft_error("Failed malloc temp_str", FAILURE));
 	/*
@@ -119,7 +119,9 @@ static int	ft_find_env(t_info *info, t_parse *parse)
 				&parse->token->str[parse->str_index + 1],
 				ft_strlen(parse->token->str) + 1);
 			parse->str_index -= parse->temp_str_len + 1;
-			printf("없을땐 여기로 들어오나 ? %s\n", parse->token->str);
+			// 만약 환경변수의 값이 없다면 NULL이 들어가게 됨.
+			// printf("없을땐 여기로 들어오나 ? %s\n", parse->token->str);
+			// printf("출력물 %s : 길이 %ld\n", parse->token->str, ft_strlen(parse->token->str));
 		}
 	}
 	return (SUCCESS);
@@ -142,16 +144,14 @@ int	ft_convert_env(t_info *info, t_parse *parse)
 			}
 			if (ft_find_env(info, parse) == FAILURE)
 				return (FAILURE);
-			//FIX: parse->str_index가 이상해짐
-			//ft_exec 부분도 같이 수정해야함
-			//
 			if (parse->str_index < 0)
-			{
 				break ;
-			}
 			parse->str_index++;
 		}
 		parse->token_index++;
 	}
 	return (SUCCESS);
 }
+//FIX: parse->str_index가 이상해짐
+//ft_exec 부분도 같이 수정해야함
+//
