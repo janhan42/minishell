@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 15:29:13 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 17:42:59 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	print_tokens(t_parse *parse)
 		printf("Token%zu str = %s\n", i + 1, parse->tokens[i].str);
 		printf("---------\n");
 	}
+	printf("Token count: %ld\n", parse->token_count);
 	printf("=========\n\n");
 }
 
@@ -73,8 +74,8 @@ static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 		return ;
 	if (ft_exec(info, parse, exec) == FAILURE)
 		return ;
-	// print_tokens(parse); // test
-	// print_exec(exec); // test
+	print_tokens(parse); // test
+	print_exec(exec); // test
 	ft_free_all(parse, exec);
 }
 
