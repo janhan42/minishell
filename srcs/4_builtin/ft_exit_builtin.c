@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 09:03:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/23 00:57:17 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 19:26:02 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@ static void	ft_exit_builtin_arg_check(t_exec *exec, size_t i, int sing_flag)
 			i++;
 		else
 		{
-			printf("exit\nexit: %s: numeric argument reauired\n",
+			ft_printf_err("minishell: exit: %s: numeric argument required\n",
 				exec->exec_arr[exec->exec_arr_index].cmd[1]);
 			exit(255);
 		}
 	}
 	if (i == 1 && sing_flag == TRUE)
 	{
-		printf("exit\nexit: %s: numeric argument required\n",
+		ft_printf_err("exit");
+		ft_printf_err("minishell: exit: %s: numeric argument required\n",
 			exec->exec_arr[exec->exec_arr_index].cmd[1]);
 		exit(255);
 	}
@@ -81,7 +82,7 @@ int	ft_exit_builtin(t_list *mini_ev, t_parse *parse, t_exec *exec,
 	ft_exit_builtin_no_arg(mini_ev, parse, exec, exec_info);
 	if (exec->exec_arr[exec->exec_arr_index].cmd[2])
 	{
-		printf("exit\nminishell: exit: too many arguments\n");
+		ft_printf_err("minishell: exit: too many arguments\n");
 		g_child_exit_code = 1;
 		if (exec_info->builtin_parent == TRUE)
 			return (SUCCESS);

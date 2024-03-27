@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:45:56 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/22 14:48:48 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 18:24:55 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static int	ft_export_builtin_arg_check(char *str)
 	size_t	i;
 
 	i = 0;
+	// printf("%c\n", str[0]);
 	if (ft_isalpha(str[0]) == FALSE && str[0] != '_')
 		return (FAILURE);
 	while (str[i])
@@ -68,9 +69,10 @@ static void	ft_export_builtin_arg(t_info *info, t_exec_info *exec_info)
 	{
 		if (ft_export_builtin_arg_check(exec_info->cmd[i]) == FAILURE)
 		{
-			ft_printf_err("export: %s: not a vaild identifier\n",
+			ft_printf_err("export: %s: not a valid identifier\n",
 				exec_info->cmd[i++]);
-			continue ;
+			// continue ;
+			exit(1);
 		}
 		to_find = ft_find_node(exec_info->cmd[i], &info->mini_ev);
 		if (to_find)

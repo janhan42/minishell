@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 18:11:05 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:59:02 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,32 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 	char	*cmd_path;
 
 	cmd_path = exec_info->cmd_path;
-	ft_cmd_is_directory(cmd_path);
 	if (cmd_path == NULL /*access(cmd_path, X_OK) == SUCCESS*/)
 		return (SUCCESS); // ls를 path에서 안찾아서 access 주석했음 ㅅㅂ
 	if (cmd_path[0] == '\0') //FIX: cmd_path가 빈문자열이면 cmd_path랑 cmd배열 바꿔주기
 		exit(SUCCESS);
-	if (exec->path_ev[0] == NULL)
+	if (exec->path_ev[0] == NULL && !ft_is_builtin(exec_info))
 	{
-		ft_printf_err("%s: No such file or directory\n", exec_info->cmd[0]);
+		ft_printf_err("minishell: %s: No such file or directory\n", exec_info->cmd[0]);
 		ft_free_all(parse, exec);
 		exit(127);
 	}
-	if (cmd_path[0] == '.' && cmd_path[1] == '/')
+	if (cmd_path[0] == '.' && (cmd_path[1] == '/' || cmd_path[0] == '/'))
 	{
-		if (access(cmd_path, X_OK) == SUCCESS)
-			return (SUCCESS);
+		if (access(cmd_path, F_OK) == FAILURE)
+		{
+			ft_printf_err("minishell: %s: No such file or directory\n", exec_info->cmd[0]);
+			exit(127);
+		}
+		if (access(cmd_path, X_OK) == FAILURE)
+		{
+			ft_printf_err("minishell: %s: Permission denied\n", exec_info->cmd[0]);
+			exit(126);
+		}
 	}
 	if (ft_access_path(exec, exec_info) == SUCCESS)
 		return (SUCCESS);
+	ft_cmd_is_directory(cmd_path);
 	if(access(cmd_path, X_OK) == SUCCESS)
 		return (SUCCESS);
 	return (FAILURE);
@@ -158,16 +166,17 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 		printf("exec_info->cmd_index = %ld\n", exec_info->cmd_index);
 		printf("exec_info->use_pipe = %d\n", exec_info->use_pipe);
 		*/
-		if (exec_info->use_pipe == 1 && exec_info->cmd[parse->token_count - 1] != NULL
-			&& exec_info->cmd[parse->token_count - 1][0] == '\0')
-			exec_info->cmd[parse->token_count - 1] = NULL;
+		if (exec_info->use_pipe == 1)
+			if (exec_info->cmd[exec_info->cmd_index - 1] != NULL
+				&& exec_info->cmd[exec_info->cmd_index - 1][0] == '\0')
+				exec_info->cmd[exec_info->cmd_index - 1] = NULL;
 		if (exec_info->cmd[exec_info->cmd_index] != NULL
 			&& exec_info->cmd[exec_info->cmd_index][0] == '\0')
 			exec_info->cmd[exec_info->cmd_index] = NULL;
 		ft_set_fd(exec, exec_info);
 		if (exec_info->cmd_path == NULL)
 			exit(EXIT_SUCCESS);
-		printf("cmd_path = %s\n", exec_info->cmd_path);
+		// printf("cmd_path = %s\n", exec_info->cmd_path);
 		if (ft_is_builtin(exec_info) == TRUE)
 			ft_exec_builtin(info, parse, exec, exec_info);
 		else

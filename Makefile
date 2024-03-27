@@ -6,14 +6,14 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/03/27 14:21:26 by janhan           ###   ########.fr        #
+#    Updated: 2024/03/27 19:04:10 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME					=	minishell
 
 CC						=	cc
-CFLAGS					=	-Wall -Wextra -Werror -fsanitize=address
+CFLAGS					=	-Wall -Wextra -Werror# -fsanitize=address
 RM						=	rm -f
 
 READLINE_LINK			=	-l readline
@@ -95,13 +95,13 @@ all : $(NAME)
 $(NAME) : $(OBJS_MAND)
 	@echo $(CURSIVE)$(YELLOW) "      - Making $(NAME) -" $(NONE)
 	@make -C $(LIBFT_DIR) -s
-	@$(CC) -g $(CFLAGS) $(LIBFT_A)  $^ -o $@ $(READLINE_LINK)
+	@$(CC) $(CFLAGS) $(LIBFT_A)  $^ -o $@ $(READLINE_LINK)
 	@echo $(CURSIVE)$(YELLOW) "      - Compiling $(NAME) -" $(NONE)
 	@echo $(GREEN) "      - Minishell Complete -"$(NONE)
 
 %.o : %.c
 	@echo $(CURSIVE)$(YELLOW) "      - Making object files -" $(NONE)
-	@$(CC) -g $(CFLAGS) -I/opt/homebrew/opt/readline/include -c $< -o $@
+	@$(CC) $(CFLAGS) -I/opt/homebrew/opt/readline/include -c $< -o $@
 
 clean :
 	@rm -fr $(OBJS_MAND)
