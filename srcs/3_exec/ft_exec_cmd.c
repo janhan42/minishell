@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 16:49:55 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/27 17:04:52 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,8 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 	}
 	else // 이거 누가 넣음 TODO: cat | cat | cat 오버플로우 남
 	{
-		if (exec_info->cmd[parse->token_count - 1] != NULL)
+		if (exec_info->cmd[parse->token_count - 1] != NULL
+			&& exec_info->cmd[parse->token_count - 1][0] == '\0')
 			exec_info->cmd[parse->token_count - 1] = NULL;
 		ft_set_fd(exec, exec_info);
 		if (exec_info->cmd_path == NULL)
