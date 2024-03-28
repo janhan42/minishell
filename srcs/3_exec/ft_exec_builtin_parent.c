@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:33:48 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 19:18:40 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/28 11:52:18 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,5 @@ int	ft_exec_builtin_parent(t_info *info, t_parse *parse,
 		ft_unset_builtin(info, exec_info);
 	if (ft_strncmp(exec_info->cmd[0], "exit", ft_strlen("exit") + 1) == 0)
 		ft_exit_builtin(&info->mini_ev, parse, exec, exec_info);
-	if (ft_strncmp(exec_info->cmd[0], "echo", ft_strlen("echo") + 1) == 0)
-		ft_echo_builtin(exec_info);
-	if (ft_strncmp(exec_info->cmd[0], "pwd", ft_strlen("pwd") + 1) == 0)
-		ft_pwd_builtin();
-	if (ft_strncmp(exec_info->cmd[0], "env", ft_strlen("env") + 1) == 0)
-		ft_env_builtin(info);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:45:56 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 22:15:53 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/28 11:43:41 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ static void	ft_export_builtin_arg(t_info *info, t_exec_info *exec_info)
 		{
 			ft_printf_err("export: %s: not a valid identifier\n",
 				exec_info->cmd[i++]);
-			// continue ; ??
-			exit(1);
+			g_child_exit_code = 1;
+			continue ;
 		}
 		to_find = ft_find_node(exec_info->cmd[i], &info->mini_ev);
 		if (to_find)
