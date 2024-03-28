@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/28 12:16:43 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/29 00:23:17 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,10 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 		// envp 긁어서 PATH가 비었을때로 출력하는 방식으로 바꿔야 할듯
 	if (cmd_path[0] == 0) // $ASDSAD 같은 빈 환경변수 들어왔을떄 찍고 있음 좆됨 씨발 ft_exec_cmd.c 70:
 	{
-		ft_printf_err("%s: command not found\n", exec_info->cmd[0]);
-		ft_free_all(parse, exec);
-		exit(127);
+		return (SUCCESS);
+		// ft_printf_err("%s: command not found\n", exec_info->cmd[0]);
+		// ft_free_all(parse, exec);
+		// exit(127);
 	}
 	if ((cmd_path[0] == '.' && cmd_path[1] == '/' ) || cmd_path[0] == '/')
 	{
