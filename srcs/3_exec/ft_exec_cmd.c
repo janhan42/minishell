@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 22:58:10 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/28 12:16:43 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 	cmd_path = exec_info->cmd_path;
 	if (cmd_path == NULL /*access(cmd_path, X_OK) == SUCCESS*/)
 		return (SUCCESS); // ls를 path에서 안찾아서 access 주석했음 ㅅㅂ
-	if (cmd_path[0] == 0)
+	if (cmd_path[0] == 0) // $ASDSAD 같은 빈 환경변수 들어왔을떄 찍고 있음 좆됨 씨발 ft_exec_cmd.c 70:
 	{
 		ft_printf_err("%s: command not found\n", exec_info->cmd[0]);
 		ft_free_all(parse, exec);
@@ -160,7 +160,6 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 		&& ft_is_builtin(exec_info) == FALSE)
 	{
 		ft_printf_err("%s: command not found\n", exec_info->cmd[0]);
-		printf ("%s\n", exec_info->cmd[0]);
 		ft_free_all(parse, exec);
 		exit(127);
 	}
