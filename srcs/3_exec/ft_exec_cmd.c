@@ -67,6 +67,8 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 	cmd_path = exec_info->cmd_path;
 	if (cmd_path == NULL /*access(cmd_path, X_OK) == SUCCESS*/)
 		return (SUCCESS); // ls를 path에서 안찾아서 access 주석했음 ㅅㅂ
+		// 이거 PATH가 없을때 출력시키려 했는데
+		// envp 긁어서 PATH가 비었을때로 출력하는 방식으로 바꿔야 할듯
 	if (cmd_path[0] == 0) // $ASDSAD 같은 빈 환경변수 들어왔을떄 찍고 있음 좆됨 씨발 ft_exec_cmd.c 70:
 	{
 		ft_printf_err("%s: command not found\n", exec_info->cmd[0]);
